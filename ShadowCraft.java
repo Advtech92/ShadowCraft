@@ -25,6 +25,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 
 import net.minecraft.src.EnumArmorMaterial;
+import net.minecraft.src.EnumToolMaterial;
 import net.minecraft.src.Item;
 import net.minecraft.src.BlockFlowing;
 import net.minecraft.src.BlockOre;
@@ -33,6 +34,7 @@ import net.minecraft.src.Item;
 import net.minecraft.src.ItemBucket;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Block;
+import net.minecraft.src.ItemSword;
 import net.minecraft.src.Material;
 import net.minecraft.src.ModLoader;
 
@@ -65,6 +67,7 @@ public class ShadowCraft {
 	public static Item shadowChestplate;
 	public static Item shadowLeggings;
 	public static Item shadowBoots;
+	public static Item shadowSword;
 	
 	public static int obsidianBucketID;
 	public static int shadowBucketID;
@@ -73,6 +76,7 @@ public class ShadowCraft {
 	public static int shadowChestplateID;
 	public static int shadowLeggingsID;
 	public static int shadowBootsID;
+	public static int shadowSwordID;
 	
 	public static int liquidShadowMovingID;
 	public static int liquidShadowStillID;
@@ -90,7 +94,8 @@ public class ShadowCraft {
     public static ClientProxySC proxy;
 	private GuiHandler guiHandler = new GuiHandler();
 	
-	static EnumArmorMaterial shadowArmorMaterial = EnumHelper.addArmorMaterial("Shadow Armor", 35, new int[]{5, 10, 8, 7}, 20);
+	static EnumArmorMaterial shadowArmorMaterial = EnumHelper.addArmorMaterial("Shadow", 35, new int[]{5, 10, 8, 7}, 20);
+	static EnumToolMaterial shadowToolMaterial = EnumHelper.addToolMaterial("Shadow", 3, 800, 14.0F, 4, 20);
 	
 	@PreInit
 	public void preLoad(FMLPreInitializationEvent event){
@@ -147,6 +152,8 @@ public class ShadowCraft {
 		shadowChestplateID = config.get(config.CATEGORY_ITEM, "Shadow Chestplate", 148).getInt(148);
 		shadowLeggingsID = config.get(config.CATEGORY_ITEM, "Shadow Leggings", 149).getInt(149);
 		shadowBootsID = config.get(config.CATEGORY_ITEM, "Shadow Boots", 150).getInt(150);
+		shadowSwordID = config.get(config.CATEGORY_ITEM, "Shadow Sword", 151).getInt(151);
+
 		
 		liquidShadowMovingID = config.get(config.CATEGORY_BLOCK, "Flowing Liquid Shadow", 139).getInt(139);
 		liquidShadowStillID = config.get(config.CATEGORY_BLOCK, "Still Liquid Shadow", 140).getInt(140);
@@ -194,6 +201,9 @@ public class ShadowCraft {
         
         shadowBoots = new ItemShadowArmor(shadowBootsID, shadowArmorMaterial, ModLoader.addArmor("Shadow"), 3).setIconIndex((16 * 3) + 15).setItemName("shadowBoots");
         LanguageRegistry.addName(shadowBoots, "Shadow Boots");
+        
+        shadowSword = new ItemSword(shadowSwordID, shadowToolMaterial).setIconIndex(4).setItemName("shadowSword");
+        shadowSword.setTextureFile("/gui/scitemtex.png");
 	}
 	
 	public void addRecipes(){
