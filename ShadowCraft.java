@@ -180,7 +180,7 @@ public class ShadowCraft {
         shadowBucket = new ItemShadowBucket(shadowBucketID, liquidShadowMoving.blockID).setIconIndex(1).setItemName("shadowBucket");
         LanguageRegistry.addName(shadowBucket, "Shadow Bucket");
         
-        shadowIngot = new ItemShadowIngot(shadowIngotID).setIconIndex(2).setItemName("shadowIngot");
+        shadowIngot = new ItemShadowIngot(146).setIconIndex(3).setItemName("shadowIngot");
         LanguageRegistry.addName(shadowIngot, "Shadow Ingot");
         
         shadowHelmet = new ItemShadowArmor(shadowHelmetID, shadowArmorMaterial, ModLoader.addArmor("Shadow"), 0).setIconIndex(15).setItemName("shadowHelmet");
@@ -198,9 +198,13 @@ public class ShadowCraft {
 	
 	public void addRecipes(){
 		GameRegistry.addRecipe(new ItemStack(obsidianBucket, 1), new Object[] {"# #", " # ", '#', Block.obsidian});
-		GameRegistry.addRecipe(new ItemStack(shadowHelmet, 1), new Object[] {"###", "# #", "#", '#', shadowIngot});
-		/*GameRegistry.addRecipe(new ItemStack(shadowChestplate, 1), new Object[] {"# #", "###", "###", "#", (Object) shadowIngot});
-		GameRegistry.addRecipe(new ItemStack(shadowLeggings, 1), new Object[] {"###", "# #", "# #", "#", (Object) shadowIngot});
-		GameRegistry.addRecipe(new ItemStack(shadowBoots, 1), new Object[] {"# #", "# #", "#", (Object) shadowIngot});*/
+
+		// Temp recipe
+		GameRegistry.addRecipe(new ItemStack(shadowIngot, 1), new Object[] {"###", "###", "###", '#', Block.obsidian});
+
+		GameRegistry.addRecipe(new ItemStack(shadowHelmet, 1), new Object[] {"###", "# #", '#', shadowIngot});
+		GameRegistry.addRecipe(new ItemStack(shadowChestplate, 1), new Object[] {"# #", "###", "###", '#', shadowIngot});
+		GameRegistry.addRecipe(new ItemStack(shadowLeggings, 1), new Object[] {"###", "# #", "# #", '#', shadowIngot});
+		GameRegistry.addRecipe(new ItemStack(shadowBoots, 1), new Object[] {"# #", "# #", '#', shadowIngot});
 	}
 }
