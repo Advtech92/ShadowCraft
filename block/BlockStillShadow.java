@@ -1,6 +1,8 @@
-package shadowcraft;
+package shadowcraft.block;
 
 import java.util.Random;
+
+import shadowcraft.ShadowCraft;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.BlockFluid;
@@ -8,9 +10,9 @@ import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
 
-public class BlockStationaryLiquid extends BlockFluidLiquid
+public class BlockStillShadow extends LiquidBase
 {
-    protected BlockStationaryLiquid(int par1, Material par2Material)
+    public BlockStillShadow(int par1, Material par2Material)
     {
         super(par1, par2Material);
         this.setTickRandomly(false);

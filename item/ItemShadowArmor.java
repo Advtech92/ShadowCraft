@@ -1,5 +1,6 @@
-package shadowcraft;
+package shadowcraft.item;
 
+import shadowcraft.ShadowCraft;
 import net.minecraft.src.Entity;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.EnumArmorMaterial;

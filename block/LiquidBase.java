@@ -1,4 +1,4 @@
-package shadowcraft;
+package shadowcraft.block;
 
 import buildcraft.api.liquids.ILiquid;
 import cpw.mods.fml.common.Side;
@@ -7,6 +7,8 @@ import java.util.Random;
 
 import javax.swing.text.html.parser.Entity;
 
+import shadowcraft.ShadowCraft;
+
 import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.Block;
 import net.minecraft.src.IBlockAccess;
@@ -14,9 +16,9 @@ import net.minecraft.src.Material;
 import net.minecraft.src.Vec3;
 import net.minecraft.src.World;
 
-public abstract class BlockFluidLiquid extends Block implements ILiquid
+public abstract class LiquidBase extends Block implements ILiquid
 {
-    protected BlockFluidLiquid(int par1, Material par2Material)
+    public LiquidBase(int par1, Material par2Material)
     {
         super(par1, 0, par2Material);
         float var3 = 0.0F;
@@ -537,7 +539,7 @@ public abstract class BlockFluidLiquid extends Block implements ILiquid
         if (par4Material == Material.water)
         {
         	
-            var5 = ((BlockFluidLiquid)ShadowCraft.liquidShadowMoving).getFlowVector(par0IBlockAccess, par1, par2, par3);
+            var5 = ((LiquidBase)ShadowCraft.liquidShadowMoving).getFlowVector(par0IBlockAccess, par1, par2, par3);
         }
 
         return var5.xCoord == 0.0D && var5.zCoord == 0.0D ? -1000.0D : Math.atan2(var5.zCoord, var5.xCoord) - (Math.PI / 2D);

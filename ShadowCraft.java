@@ -6,7 +6,13 @@ import buildcraft.api.liquids.LiquidData;
 import buildcraft.api.liquids.LiquidManager;
 import buildcraft.api.liquids.LiquidStack;
 
+import shadowcraft.block.BlockFlowingShadow;
+import shadowcraft.block.BlockShadowCatcher;
+import shadowcraft.block.BlockStillShadow;
 import shadowcraft.client.ClientProxySC;
+import shadowcraft.item.ItemShadowArmor;
+import shadowcraft.item.ItemShadowBucket;
+import shadowcraft.item.ItemShadowIngot;
 
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -24,6 +30,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.EnumToolMaterial;
 import net.minecraft.src.Item;
@@ -31,7 +38,10 @@ import net.minecraft.src.BlockFlowing;
 import net.minecraft.src.BlockOre;
 import net.minecraft.src.BlockStationary;
 import net.minecraft.src.Item;
+import net.minecraft.src.ItemAxe;
 import net.minecraft.src.ItemBucket;
+import net.minecraft.src.ItemPickaxe;
+import net.minecraft.src.ItemSpade;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Block;
 import net.minecraft.src.ItemSword;
@@ -68,6 +78,9 @@ public class ShadowCraft {
 	public static Item shadowLeggings;
 	public static Item shadowBoots;
 	public static Item shadowSword;
+	public static Item shadowShovel;
+	public static Item shadowPickaxe;
+	public static Item shadowAxe;
 	
 	public static int obsidianBucketID;
 	public static int shadowBucketID;
@@ -77,6 +90,9 @@ public class ShadowCraft {
 	public static int shadowLeggingsID;
 	public static int shadowBootsID;
 	public static int shadowSwordID;
+	public static int shadowShovelID;
+	public static int shadowPickaxeID;
+	public static int shadowAxeID;
 	
 	public static int liquidShadowMovingID;
 	public static int liquidShadowStillID;
@@ -153,6 +169,10 @@ public class ShadowCraft {
 		shadowLeggingsID = config.get(config.CATEGORY_ITEM, "Shadow Leggings", 149).getInt(149);
 		shadowBootsID = config.get(config.CATEGORY_ITEM, "Shadow Boots", 150).getInt(150);
 		shadowSwordID = config.get(config.CATEGORY_ITEM, "Shadow Sword", 151).getInt(151);
+		shadowShovelID = config.get(config.CATEGORY_ITEM, "Shadow Shovel", 152).getInt(152);
+		shadowPickaxeID = config.get(config.CATEGORY_ITEM, "Shadow Pickaxe", 153).getInt(153);
+		shadowAxeID = config.get(config.CATEGORY_ITEM, "Shadow Axe", 154).getInt(154);
+
 
 		
 		liquidShadowMovingID = config.get(config.CATEGORY_BLOCK, "Flowing Liquid Shadow", 139).getInt(139);
@@ -170,8 +190,8 @@ public class ShadowCraft {
 	
 	public void addBlocks(){
 		shadowCatcher = new BlockShadowCatcher(141);
-		liquidShadowMoving = new BlockFlowingLiquid(139, Material.water).setHardness(100.0F).setLightOpacity(3).setBlockName("liquidshadow");
-		liquidShadowStill = new BlockStationaryLiquid(140, Material.water).setHardness(100.0F).setLightOpacity(3).setBlockName("liquidshadow");
+		liquidShadowMoving = new BlockFlowingShadow(139, Material.water).setHardness(100.0F).setLightOpacity(3).setBlockName("liquidshadow");
+		liquidShadowStill = new BlockStillShadow(140, Material.water).setHardness(100.0F).setLightOpacity(3).setBlockName("liquidshadow");
 		GameRegistry.registerBlock(liquidShadowMoving);
 		GameRegistry.registerBlock(liquidShadowStill);	 
 		GameRegistry.registerBlock(shadowCatcher);
@@ -202,8 +222,21 @@ public class ShadowCraft {
         shadowBoots = new ItemShadowArmor(shadowBootsID, shadowArmorMaterial, ModLoader.addArmor("Shadow"), 3).setIconIndex((16 * 3) + 15).setItemName("shadowBoots");
         LanguageRegistry.addName(shadowBoots, "Shadow Boots");
         
-        shadowSword = new ItemSword(shadowSwordID, shadowToolMaterial).setIconIndex(4).setItemName("shadowSword");
+        shadowSword = new ItemSword(shadowSwordID, shadowToolMaterial).setIconIndex((16 * 4) + 15).setItemName("shadowSword");
         shadowSword.setTextureFile("/gui/scitemtex.png");
+        LanguageRegistry.addName(shadowSword, "Death's Blade");
+        
+        shadowShovel = new ItemSpade(shadowShovelID, shadowToolMaterial).setIconIndex((16 * 5) + 15).setItemName("shadowShovel");
+        shadowShovel.setTextureFile("/gui/scitemtex.png");
+        LanguageRegistry.addName(shadowShovel, "Dirt Destroyer");
+        
+        /*shadowPickaxe = new ItemPickaxe(shadowSwordID, shadowToolMaterial).setIconIndex(4).setItemName("shadowSword");
+        shadowPickaxe.setTextureFile("/gui/scitemtex.png");
+        LanguageRegistry.addName(shadowPickaxe, "Shadow Nullifier");
+        
+        shadowAxe = new ItemAxe(shadowSwordID, shadowToolMaterial).setIconIndex(4).setItemName("shadowSword");
+        shadowAxe.setTextureFile("/gui/scitemtex.png");
+        LanguageRegistry.addName(shadowAxe, "Nature's Nightmare");*/
 	}
 	
 	public void addRecipes(){
@@ -216,5 +249,7 @@ public class ShadowCraft {
 		GameRegistry.addRecipe(new ItemStack(shadowChestplate, 1), new Object[] {"# #", "###", "###", '#', shadowIngot});
 		GameRegistry.addRecipe(new ItemStack(shadowLeggings, 1), new Object[] {"###", "# #", "# #", '#', shadowIngot});
 		GameRegistry.addRecipe(new ItemStack(shadowBoots, 1), new Object[] {"# #", "# #", '#', shadowIngot});
+		GameRegistry.addRecipe(new ItemStack(shadowSword, 1), new Object[] {" # ", " # ", " S ", '#', shadowIngot, 'S', Item.stick});
+		GameRegistry.addRecipe(new ItemStack(shadowShovel, 1), new Object[] {" # ", " S ", " S ", '#', shadowIngot, 'S', Item.stick});
 	}
 }

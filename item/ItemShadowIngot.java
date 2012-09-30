@@ -1,4 +1,4 @@
-package shadowcraft;
+package shadowcraft.item;
 
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Item;

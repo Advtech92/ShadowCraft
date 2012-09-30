@@ -1,6 +1,8 @@
-package shadowcraft;
+package shadowcraft.block;
 
 import java.util.Random;
+
+import shadowcraft.ShadowCraft;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.BlockFluid;
@@ -8,7 +10,7 @@ import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
 
-public class BlockFlowingLiquid extends BlockFluidLiquid
+public class BlockFlowingShadow extends LiquidBase
 {
     /**
      * Number of horizontally adjacent liquid source blocks. Diagonal doesn't count. Only source blocks of the same
@@ -28,7 +30,7 @@ public class BlockFlowingLiquid extends BlockFluidLiquid
      */
     int[] flowCost = new int[4];
 
-    protected BlockFlowingLiquid(int par1, Material par2Material)
+    public BlockFlowingShadow(int par1, Material par2Material)
     {
         super(par1, par2Material);
     }

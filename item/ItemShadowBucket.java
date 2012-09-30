@@ -1,5 +1,6 @@
-package shadowcraft;
+package shadowcraft.item;
 
+import shadowcraft.ShadowCraft;
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EntityCow;

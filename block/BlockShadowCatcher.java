@@ -1,6 +1,9 @@
-package shadowcraft;
+package shadowcraft.block;
 
 import java.util.Random;
+
+import shadowcraft.ShadowCraft;
+import shadowcraft.TileEntityShadowCatcher;
 
 import buildcraft.api.power.IPowerProvider;
 import buildcraft.api.power.IPowerReceptor;
@@ -23,7 +26,7 @@ public class BlockShadowCatcher extends BlockContainer{
 
 	public TileEntityShadowCatcher te;
 	private String[] list = {"smoke", "flame", "lava"};
-	protected BlockShadowCatcher(int par1) {
+	public BlockShadowCatcher(int par1) {
 		super(par1, Material.rock);
 		blockIndexInTexture = 5;
 		setBlockName("blockTutorial");
