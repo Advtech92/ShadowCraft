@@ -11,8 +11,12 @@ import shadowcraft.block.BlockShadowCatcher;
 import shadowcraft.block.BlockStillShadow;
 import shadowcraft.client.ClientProxySC;
 import shadowcraft.item.ItemShadowArmor;
+import shadowcraft.item.ItemShadowAxe;
 import shadowcraft.item.ItemShadowBucket;
 import shadowcraft.item.ItemShadowIngot;
+import shadowcraft.item.ItemShadowPickaxe;
+import shadowcraft.item.ItemShadowShovel;
+import shadowcraft.item.ItemShadowSword;
 
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -222,21 +226,21 @@ public class ShadowCraft {
         shadowBoots = new ItemShadowArmor(shadowBootsID, shadowArmorMaterial, ModLoader.addArmor("Shadow"), 3).setIconIndex((16 * 3) + 15).setItemName("shadowBoots");
         LanguageRegistry.addName(shadowBoots, "Shadow Boots");
         
-        shadowSword = new ItemSword(shadowSwordID, shadowToolMaterial).setIconIndex((16 * 4) + 15).setItemName("shadowSword");
+        shadowSword = new ItemShadowSword(shadowSwordID, shadowToolMaterial).setIconIndex((16 * 4) + 15).setItemName("shadowSword");
         shadowSword.setTextureFile("/gui/scitemtex.png");
         LanguageRegistry.addName(shadowSword, "Death's Blade");
         
-        shadowShovel = new ItemSpade(shadowShovelID, shadowToolMaterial).setIconIndex((16 * 5) + 15).setItemName("shadowShovel");
+        shadowShovel = new ItemShadowShovel(shadowShovelID, shadowToolMaterial).setIconIndex((16 * 5) + 15).setItemName("shadowShovel");
         shadowShovel.setTextureFile("/gui/scitemtex.png");
         LanguageRegistry.addName(shadowShovel, "Dirt Destroyer");
         
-        /*shadowPickaxe = new ItemPickaxe(shadowSwordID, shadowToolMaterial).setIconIndex(4).setItemName("shadowSword");
+        shadowPickaxe = new ItemShadowPickaxe(shadowPickaxeID, shadowToolMaterial).setIconIndex((16 * 6) + 15).setItemName("shadowPickaxe");
         shadowPickaxe.setTextureFile("/gui/scitemtex.png");
-        LanguageRegistry.addName(shadowPickaxe, "Shadow Nullifier");
+        LanguageRegistry.addName(shadowPickaxe, "Dark Nullifier");
         
-        shadowAxe = new ItemAxe(shadowSwordID, shadowToolMaterial).setIconIndex(4).setItemName("shadowSword");
+        shadowAxe = new ItemShadowAxe(shadowAxeID, shadowToolMaterial).setIconIndex((16 * 7) + 15).setItemName("shadowAxe");
         shadowAxe.setTextureFile("/gui/scitemtex.png");
-        LanguageRegistry.addName(shadowAxe, "Nature's Nightmare");*/
+        LanguageRegistry.addName(shadowAxe, "Nature's Nightmare");
 	}
 	
 	public void addRecipes(){
@@ -249,7 +253,10 @@ public class ShadowCraft {
 		GameRegistry.addRecipe(new ItemStack(shadowChestplate, 1), new Object[] {"# #", "###", "###", '#', shadowIngot});
 		GameRegistry.addRecipe(new ItemStack(shadowLeggings, 1), new Object[] {"###", "# #", "# #", '#', shadowIngot});
 		GameRegistry.addRecipe(new ItemStack(shadowBoots, 1), new Object[] {"# #", "# #", '#', shadowIngot});
-		GameRegistry.addRecipe(new ItemStack(shadowSword, 1), new Object[] {" # ", " # ", " S ", '#', shadowIngot, 'S', Item.stick});
-		GameRegistry.addRecipe(new ItemStack(shadowShovel, 1), new Object[] {" # ", " S ", " S ", '#', shadowIngot, 'S', Item.stick});
+		GameRegistry.addRecipe(new ItemStack(shadowSword, 1), new Object[] {" # ", " # ", " O ", '#', shadowIngot, 'O', Block.obsidian});
+		GameRegistry.addRecipe(new ItemStack(shadowShovel, 1), new Object[] {"#", "O", "O", '#', shadowIngot, 'O', Block.obsidian});
+		GameRegistry.addRecipe(new ItemStack(shadowPickaxe, 1), new Object[] {"###", " O ", " O ", '#', shadowIngot, 'O', Block.obsidian});
+		GameRegistry.addRecipe(new ItemStack(shadowAxe, 1), new Object[] {"##", "#O", " O", '#', shadowIngot, 'O', Block.obsidian});
+
 	}
 }
