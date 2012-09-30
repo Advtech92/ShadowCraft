@@ -199,7 +199,7 @@ public class ShadowCraft {
 	
 	public void addBlocks(){
 		
-		shadowCatcher = new ShadowCatcher(shadowCatcherID);
+		shadowCatcher = new ShadowCatcher(shadowCatcherID).setHardness(5.0F).setResistance(2000.0F);
 		GameRegistry.registerBlock(shadowCatcher);
 		LanguageRegistry.addName(shadowCatcher, "Shadow Catcher");
 		
@@ -211,7 +211,7 @@ public class ShadowCraft {
 		GameRegistry.registerBlock(liquidShadowStill);
 		LanguageRegistry.addName(liquidShadowStill, "Liquid Shadow");
 		
-		shadowRefinery = new ShadowRefinery(shadowRefineryID);
+		shadowRefinery = new ShadowRefinery(shadowRefineryID).setHardness(5.0F).setResistance(2000.0F);
 		GameRegistry.registerBlock(shadowRefinery);
 		LanguageRegistry.addName(shadowRefinery, "Shadow Refinery");
 		
