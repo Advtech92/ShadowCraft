@@ -10,11 +10,18 @@ public class ShadowRefinery extends BlockContainer{
 	public ShadowRefinery(int itemID) {
 		super(itemID, Material.rock);
 		blockIndexInTexture = 8;
+		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.75F, 1.0F);
+		setLightOpacity(0);
 	}
 
 	@Override
 	public String getTextureFile(){
 		return "/gui/scblocktex.png";
+	}
+	
+	@Override
+	public boolean renderAsNormalBlock(){
+		return false;
 	}
 	
 	@Override
