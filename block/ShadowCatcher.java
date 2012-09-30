@@ -69,7 +69,11 @@ public class ShadowCatcher extends BlockContainer{
 	
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int i, float f, float g, float t) {
-		return false;
+		TileEntity te = world.getBlockTileEntity(x, y, z);
+		if(te instanceof TEShadowCatcher){
+			System.out.println(((TEShadowCatcher) te).shadows);
+		}
+		return true;
 	}
 
 	@Override

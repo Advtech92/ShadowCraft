@@ -1,5 +1,7 @@
 package shadowcraft;
 
+import java.nio.ByteBuffer;
+
 import buildcraft.api.core.Orientations;
 import buildcraft.api.core.Position;
 import buildcraft.api.liquids.ILiquidTank;
@@ -16,6 +18,9 @@ import net.minecraft.src.IInventory;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.NBTTagList;
+import net.minecraft.src.Packet;
+import net.minecraft.src.Packet132TileEntityData;
+import net.minecraft.src.Packet250CustomPayload;
 import net.minecraft.src.TileEntity;
 
 public class TEShadowCatcher extends TileEntity implements IMachine {
@@ -26,17 +31,16 @@ public class TEShadowCatcher extends TileEntity implements IMachine {
 	public TEShadowCatcher() {
 	}
 
-	@Override
+	@SideOnly(Side.SERVER)
 	public void readFromNBT(NBTTagCompound tagCompound){
 		super.readFromNBT(tagCompound);
         shadows = tagCompound.getInteger("shadows");
 	}
 	
-	@Override
+	@SideOnly(Side.SERVER)
 	public void writeToNBT(NBTTagCompound tagCompound){
 		super.writeToNBT(tagCompound);
         tagCompound.setInteger("shadows", shadows);
-        
 	}
 
 	public void setShadows(int setTo){
@@ -75,6 +79,16 @@ public class TEShadowCatcher extends TileEntity implements IMachine {
 		}
 	}
 
+	@Override
+	public Packet getDescriptionPacket(){
+		byte[] bytes = ByteBuffer.allocate(4).putInt(shadows).array();
+		for (byte b : bytes) {
+			System.out.format("0x%x ", b);
+		}
+		Packet packet = new Packet250CustomPayload("ShadowCraft", bytes);
+		return null;
+	}
+	
 	@Override
 	public boolean isActive() {
 		return true;
