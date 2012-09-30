@@ -8,6 +8,7 @@ import buildcraft.api.liquids.LiquidStack;
 
 import shadowcraft.block.FlowingShadow;
 import shadowcraft.block.ShadowCatcher;
+import shadowcraft.block.ShadowRefinery;
 import shadowcraft.block.StillShadow;
 import shadowcraft.client.ClientProxySC;
 import shadowcraft.item.ShadowArmor;
@@ -72,6 +73,7 @@ public class ShadowCraft {
 	public static Block liquidShadowStill;
 	public static Block liquidShadowMoving;
 	public static Block shadowCatcher;
+	public static Block shadowRefinery;
 	
 	public static Item obsidianBucket;
 	public static Item shadowBucket;
@@ -101,6 +103,7 @@ public class ShadowCraft {
 	public static int liquidShadowMovingID;
 	public static int liquidShadowStillID;
 	public static int shadowCatcherID;
+	public static int shadowRefineryID;
 	
 	public static int shadowArmorParticles;
 	
@@ -182,6 +185,8 @@ public class ShadowCraft {
 		liquidShadowMovingID = config.get(config.CATEGORY_BLOCK, "Flowing Liquid Shadow", 139).getInt(139);
 		liquidShadowStillID = config.get(config.CATEGORY_BLOCK, "Still Liquid Shadow", 140).getInt(140);
 		shadowCatcherID = config.get(config.CATEGORY_BLOCK, "Shadow Catcher", 141).getInt(141);
+		shadowRefineryID = config.get(config.CATEGORY_BLOCK, "Shadow Refiner", 142).getInt(142);
+
 		
 		config.get(config.CATEGORY_GENERAL, "Shadow Armor Particles", 2).comment = "Particle effects for shadow armor. 0 = off, 1 = decreased, 2 = normal, 3 = maximum";
 		shadowArmorParticles = config.get(config.CATEGORY_GENERAL, "Shadow Armor Particles", 2).getInt(2);
@@ -193,15 +198,23 @@ public class ShadowCraft {
 	}
 	
 	public void addBlocks(){
-		shadowCatcher = new ShadowCatcher(141);
-		liquidShadowMoving = new FlowingShadow(139, Material.water).setHardness(100.0F).setLightOpacity(3).setBlockName("liquidshadow");
-		liquidShadowStill = new StillShadow(140, Material.water).setHardness(100.0F).setLightOpacity(3).setBlockName("liquidshadow");
-		GameRegistry.registerBlock(liquidShadowMoving);
-		GameRegistry.registerBlock(liquidShadowStill);	 
+		
+		shadowCatcher = new ShadowCatcher(shadowCatcherID);
 		GameRegistry.registerBlock(shadowCatcher);
-		LanguageRegistry.addName(liquidShadowMoving, "Liquid Shadow");
-		LanguageRegistry.addName(liquidShadowStill, "Liquid Shadow");
 		LanguageRegistry.addName(shadowCatcher, "Shadow Catcher");
+		
+		liquidShadowMoving = new FlowingShadow(liquidShadowMovingID, Material.water).setHardness(100.0F).setLightOpacity(3).setBlockName("liquidshadow");
+		GameRegistry.registerBlock(liquidShadowMoving);
+		LanguageRegistry.addName(liquidShadowMoving, "Liquid Shadow");
+		
+		liquidShadowStill = new StillShadow(liquidShadowStillID, Material.water).setHardness(100.0F).setLightOpacity(3).setBlockName("liquidshadow");
+		GameRegistry.registerBlock(liquidShadowStill);
+		LanguageRegistry.addName(liquidShadowStill, "Liquid Shadow");
+		
+		shadowRefinery = new ShadowRefinery(shadowRefineryID);
+		GameRegistry.registerBlock(shadowRefinery);
+		LanguageRegistry.addName(shadowRefinery, "Shadow Refinery");
+		
 	}
 	
 	public void addItems(){
