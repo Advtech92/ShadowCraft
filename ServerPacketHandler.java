@@ -12,8 +12,6 @@ public class ServerPacketHandler implements IPacketHandler{
 
 	@Override
 	public void onPacketData(NetworkManager manager, Packet250CustomPayload payload, Player player){
-		System.out.println("[SHADOWCRAFT] ServerPacketHandler -> onPacketData()");
 		DataInputStream data = new DataInputStream(new ByteArrayInputStream(payload.data));
-		EntityPlayer sender = (EntityPlayer) player;
 	}
 }

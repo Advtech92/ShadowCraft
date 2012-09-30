@@ -31,13 +31,13 @@ public class TEShadowCatcher extends TileEntity implements IMachine {
 	public TEShadowCatcher() {
 	}
 
-	@SideOnly(Side.SERVER)
 	public void readFromNBT(NBTTagCompound tagCompound){
 		super.readFromNBT(tagCompound);
         shadows = tagCompound.getInteger("shadows");
+        System.out.println(shadows);
+        super.updateEntity();
 	}
 	
-	@SideOnly(Side.SERVER)
 	public void writeToNBT(NBTTagCompound tagCompound){
 		super.writeToNBT(tagCompound);
         tagCompound.setInteger("shadows", shadows);
@@ -81,12 +81,14 @@ public class TEShadowCatcher extends TileEntity implements IMachine {
 
 	@Override
 	public Packet getDescriptionPacket(){
-		byte[] bytes = ByteBuffer.allocate(4).putInt(shadows).array();
-		for (byte b : bytes) {
-			System.out.format("0x%x ", b);
-		}
+		byte[] bytes = ByteBuffer.allocate(16).putInt(xCoord).putInt(yCoord).putInt(zCoord).putInt(shadows).array();
+		ByteBuffer.allocate(4).putInt(xCoord).array();
+		
+		System.out.print("(" + Integer.toString(shadows) + ")");
+		System.out.println();
+		
 		Packet packet = new Packet250CustomPayload("ShadowCraft", bytes);
-		return null;
+		return packet;
 	}
 	
 	@Override
