@@ -20,37 +20,27 @@ import net.minecraft.src.TileEntity;
 
 public class TEShadowCatcher extends TileEntity implements IMachine {
 
-	
-	private ItemStack[] inventory;
-	public @TileNetworkData
-	int shadows;
-	public @TileNetworkData
-	int lightLevel;
-	private boolean loaded = false;
+	public int shadows;
+	public int lightLevel;
 	
 	public TEShadowCatcher() {
-		System.out.print("TileEntityShadowCatcher init, shadows: ");
-		System.out.print(shadows);
-		System.out.println();
-		inventory = new ItemStack[1];
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound tagCompound){
 		super.readFromNBT(tagCompound);
-        shadows = tagCompound.getInteger("Shadows");
-        ShadowCraft.scLog.info(Integer.toString(shadows));
-	}
-
-	public void setShadows(int setTo){
-		shadows = setTo;
+        shadows = tagCompound.getInteger("shadows");
 	}
 	
 	@Override
 	public void writeToNBT(NBTTagCompound tagCompound){
 		super.writeToNBT(tagCompound);
-        tagCompound.setInteger("Shadows", shadows);
+        tagCompound.setInteger("shadows", shadows);
         
+	}
+
+	public void setShadows(int setTo){
+		shadows = setTo;
 	}
 	
 	public int getShadows(){
@@ -77,7 +67,7 @@ public class TEShadowCatcher extends TileEntity implements IMachine {
 				TileEntity tile = worldObj.getBlockTileEntity((int) p.x, (int) p.y, (int) p.z);
 
 				if(tile instanceof ITankContainer) {
-					ShadowCraft.scLog.info(Integer.toString(((ITankContainer)tile).fill(p.orientation.reverse(), new LiquidStack(ShadowCraft.liquidShadowStill, (LiquidManager.BUCKET_VOLUME * 2) * ShadowCraft.shadowCatcherOutputMultiplier), true)));
+					((ITankContainer)tile).fill(p.orientation.reverse(), new LiquidStack(ShadowCraft.liquidShadowStill, (LiquidManager.BUCKET_VOLUME * 2) * ShadowCraft.shadowCatcherOutputMultiplier), true);
 					shadows = 0;
 					break;
 				}
@@ -104,5 +94,6 @@ public class TEShadowCatcher extends TileEntity implements IMachine {
 	public boolean allowActions() {
 		return false;
 	}
+	
 
 }
