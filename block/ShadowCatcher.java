@@ -34,30 +34,27 @@ public class ShadowCatcher extends BlockContainer{
 	}
 	
 	@Override
-    public String getTextureFile()
-    {
-            return "/gui/scblocktex.png";
-    }
+	public String getTextureFile(){
+		return "/gui/scblocktex.png";
+	}
 	
 	@Override
-	public void randomDisplayTick(World world, int x, int y, int z, Random par5Random)
-    {
-
+	public void randomDisplayTick(World world, int x, int y, int z, Random par5Random){
 		int lightLevel = world.getBlockLightValue(x, y + 1, z);
 		boolean isCheatyBlockAbove = !world.isAirBlock(x, y + 1, z);
 		if((lightLevel < 3) && (!isCheatyBlockAbove)){
 			Random r = new Random();
-		    float var7 = (float)x + 0.5F;
-		    float var8 = (float)y + 0.0F + par5Random.nextFloat() * 6.0F / 16.0F;
-		    float var9 = (float)z + 0.5F;
-		    float var10 = 0.52F;
-		    float var11 = par5Random.nextFloat() * 0.6F - 0.3F;
-		    world.spawnParticle(list[r.nextInt(list.length)], (double)(var7 - var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
-		    world.spawnParticle(list[r.nextInt(list.length)], (double)(var7 + var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
-		    world.spawnParticle(list[r.nextInt(list.length)], (double)(var7 + var11), (double)var8, (double)(var9 - var10), 0.0D, 0.0D, 0.0D);
-		    world.spawnParticle(list[r.nextInt(list.length)], (double)(var7 + var11), (double)var8, (double)(var9 + var10), 0.0D, 0.0D, 0.0D);
+			float var7 = (float)x + 0.5F;
+			float var8 = (float)y + 0.0F + par5Random.nextFloat() * 6.0F / 16.0F;
+			float var9 = (float)z + 0.5F;
+			float var10 = 0.52F;
+			float var11 = par5Random.nextFloat() * 0.6F - 0.3F;
+			world.spawnParticle(list[r.nextInt(list.length)], (double)(var7 - var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
+			world.spawnParticle(list[r.nextInt(list.length)], (double)(var7 + var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
+			world.spawnParticle(list[r.nextInt(list.length)], (double)(var7 + var11), (double)var8, (double)(var9 - var10), 0.0D, 0.0D, 0.0D);
+			world.spawnParticle(list[r.nextInt(list.length)], (double)(var7 + var11), (double)var8, (double)(var9 + var10), 0.0D, 0.0D, 0.0D);
 		}
-    }
+	}
 	
 	@Override
 	public int getBlockTextureFromSide(int side){
