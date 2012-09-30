@@ -1,0 +1,16 @@
+[
+{
+  "modid": "ShadowCraft",
+  "name": "ShadowCraft",
+  "description": "Take a step into the dark world.",
+  "version": "@VERSION@",
+  "url": "https://github.com/JackBeePee/ShadowCraft",
+  "updateUrl": "",
+  "authorList": ["JackBeePee"],
+  "credits": "All coding/texturing by JackBeePee",
+  "logoFile": "",
+  "screenshots": [],
+  "parent":"",
+  "dependencies": ["Buildcraft"]
+}
+]
