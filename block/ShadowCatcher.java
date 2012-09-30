@@ -24,7 +24,6 @@ import net.minecraft.src.World;
 
 public class ShadowCatcher extends BlockContainer{
 
-	public TEShadowCatcher te;
 	private String[] list = {"smoke", "flame", "lava"};
 	public ShadowCatcher(int par1) {
 		super(par1, Material.rock);
@@ -70,23 +69,12 @@ public class ShadowCatcher extends BlockContainer{
 	
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int i, float f, float g, float t) {
-		/*TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-		
-		if (tileEntity == null || player.isSneaking()) {
-			return false;
-		}
-		
-		player.openGui(ShadowCraft.instance, 0, world, x, y, z);
-		*/
-		ShadowCraft.scLog.info("Shadows: " + te.shadows);
-		return true;
+		return false;
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World var1) {
-		System.out.println("createTileEntity called.");
-		te = new TEShadowCatcher();
-		return te;
+		return new TEShadowCatcher();
 	}
 
 
