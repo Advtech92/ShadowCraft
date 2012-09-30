@@ -134,6 +134,7 @@ public class ShadowCraft {
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 		
 		GameRegistry.registerTileEntity(TEShadowCatcher.class, "tileEntityShadowCatcher");
+		GameRegistry.registerTileEntity(TEShadowRefinery.class, "tileEntityShadowRefinery");
 		
 		proxy.registerRenderThings();
  

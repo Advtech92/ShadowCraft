@@ -9,11 +9,21 @@ import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GuiHandler implements IGuiHandler {
 
-	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+	@Override
+	public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
+		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+		if(tileEntity instanceof TEShadowRefinery){
+			return new ContainerRefinery(player.inventory, (TEShadowRefinery) tileEntity);
+		}
 		return null;
 	}
 
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+	@Override
+	public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
+		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+		if(tileEntity instanceof TEShadowRefinery){
+			return new GuiShadowRefinery(player.inventory, (TEShadowRefinery) tileEntity);
+		}
 		return null;
 	}
 
