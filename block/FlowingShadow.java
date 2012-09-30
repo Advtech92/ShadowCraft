@@ -10,7 +10,7 @@ import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
 
-public class BlockFlowingShadow extends LiquidBase
+public class FlowingShadow extends LiquidBase
 {
     /**
      * Number of horizontally adjacent liquid source blocks. Diagonal doesn't count. Only source blocks of the same
@@ -30,7 +30,7 @@ public class BlockFlowingShadow extends LiquidBase
      */
     int[] flowCost = new int[4];
 
-    public BlockFlowingShadow(int par1, Material par2Material)
+    public FlowingShadow(int par1, Material par2Material)
     {
         super(par1, par2Material);
     }

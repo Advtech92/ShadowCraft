@@ -18,7 +18,7 @@ import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.NBTTagList;
 import net.minecraft.src.TileEntity;
 
-public class TileEntityShadowCatcher extends TileEntity implements IMachine {
+public class TEShadowCatcher extends TileEntity implements IMachine {
 
 	
 	private ItemStack[] inventory;
@@ -28,7 +28,7 @@ public class TileEntityShadowCatcher extends TileEntity implements IMachine {
 	int lightLevel;
 	private boolean loaded = false;
 	
-	public TileEntityShadowCatcher() {
+	public TEShadowCatcher() {
 		System.out.print("TileEntityShadowCatcher init, shadows: ");
 		System.out.print(shadows);
 		System.out.println();

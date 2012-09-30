@@ -3,9 +3,9 @@ package shadowcraft.item;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Item;
 
-public class ItemShadowIngot extends Item{
+public class ShadowIngot extends Item{
 
-	public ItemShadowIngot(int itemID) {
+	public ShadowIngot(int itemID) {
 		super(itemID);
 		this.setCreativeTab(CreativeTabs.tabMaterials);
 	}

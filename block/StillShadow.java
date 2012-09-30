@@ -10,9 +10,9 @@ import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
 
-public class BlockStillShadow extends LiquidBase
+public class StillShadow extends LiquidBase
 {
-    public BlockStillShadow(int par1, Material par2Material)
+    public StillShadow(int par1, Material par2Material)
     {
         super(par1, par2Material);
         this.setTickRandomly(false);

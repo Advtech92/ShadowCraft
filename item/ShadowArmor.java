@@ -9,9 +9,9 @@ import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 import net.minecraftforge.common.IArmorTextureProvider;
 
-public class ItemShadowArmor extends ItemArmor implements IArmorTextureProvider{
+public class ShadowArmor extends ItemArmor implements IArmorTextureProvider{
 
-	public ItemShadowArmor(int itemID, EnumArmorMaterial armorMaterial, int texID, int partID) {
+	public ShadowArmor(int itemID, EnumArmorMaterial armorMaterial, int texID, int partID) {
 		super(itemID, armorMaterial, texID, partID);
 	}
 	

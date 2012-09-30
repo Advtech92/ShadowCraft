@@ -1,18 +1,13 @@
 package shadowcraft.item;
 
-import java.awt.List;
-
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
-
 import net.minecraft.src.EnumRarity;
 import net.minecraft.src.EnumToolMaterial;
-import net.minecraft.src.ItemPickaxe;
+import net.minecraft.src.ItemAxe;
 import net.minecraft.src.ItemStack;
 
-public class ItemShadowPickaxe extends ItemPickaxe{
-	
-	public ItemShadowPickaxe(int itemID, EnumToolMaterial toolMaterial) {
+public class ShadowAxe extends ItemAxe{
+
+	public ShadowAxe(int itemID, EnumToolMaterial toolMaterial) {
 		super(itemID, toolMaterial);
 	}
 	
