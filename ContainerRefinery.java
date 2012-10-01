@@ -8,9 +8,9 @@ import net.minecraft.src.Slot;
 
 public class ContainerRefinery extends Container{
 
-	protected TEShadowRefinery tileEntity;
+	protected TileEntityShadowRefinery tileEntity;
 	
-	public ContainerRefinery(InventoryPlayer inventoryPlayer, TEShadowRefinery te){
+	public ContainerRefinery(InventoryPlayer inventoryPlayer, TileEntityShadowRefinery te){
 		tileEntity = te;
 		addSlotToContainer(new Slot(tileEntity, 0, 120, 33));
 		bindPlayerInventory(inventoryPlayer);

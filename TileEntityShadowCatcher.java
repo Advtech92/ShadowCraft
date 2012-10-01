@@ -23,12 +23,12 @@ import net.minecraft.src.Packet132TileEntityData;
 import net.minecraft.src.Packet250CustomPayload;
 import net.minecraft.src.TileEntity;
 
-public class TEShadowCatcher extends TileEntity implements IMachine {
+public class TileEntityShadowCatcher extends TileEntity implements IMachine {
 
 	public int shadows;
 	public int lightLevel;
 	
-	public TEShadowCatcher() {
+	public TileEntityShadowCatcher() {
 	}
 
 	public void readFromNBT(NBTTagCompound tagCompound){

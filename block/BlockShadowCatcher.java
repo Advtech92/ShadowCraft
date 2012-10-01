@@ -3,7 +3,7 @@ package shadowcraft.block;
 import java.util.Random;
 
 import shadowcraft.ShadowCraft;
-import shadowcraft.TEShadowCatcher;
+import shadowcraft.TileEntityShadowCatcher;
 
 import buildcraft.api.power.IPowerProvider;
 import buildcraft.api.power.IPowerReceptor;
@@ -22,10 +22,10 @@ import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.TileEntity;
 import net.minecraft.src.World;
 
-public class ShadowCatcher extends BlockContainer{
+public class BlockShadowCatcher extends BlockContainer{
 
 	private String[] list = {"smoke", "flame", "lava"};
-	public ShadowCatcher(int par1) {
+	public BlockShadowCatcher(int par1) {
 		super(par1, Material.rock);
 		blockIndexInTexture = 5;
 		setBlockName("blockTutorial");
@@ -70,15 +70,15 @@ public class ShadowCatcher extends BlockContainer{
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int i, float f, float g, float t) {
 		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te instanceof TEShadowCatcher){
-			System.out.println(((TEShadowCatcher) te).shadows);
+		if(te instanceof TileEntityShadowCatcher){
+			System.out.println(((TileEntityShadowCatcher) te).shadows);
 		}
 		return true;
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World var1) {
-		return new TEShadowCatcher();
+		return new TileEntityShadowCatcher();
 	}
 
 

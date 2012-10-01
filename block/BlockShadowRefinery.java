@@ -3,7 +3,7 @@ package shadowcraft.block;
 import java.util.Random;
 
 import shadowcraft.ShadowCraft;
-import shadowcraft.TEShadowRefinery;
+import shadowcraft.TileEntityShadowRefinery;
 
 import net.minecraft.src.BlockContainer;
 import net.minecraft.src.EntityItem;
@@ -15,9 +15,9 @@ import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.TileEntity;
 import net.minecraft.src.World;
 
-public class ShadowRefinery extends BlockContainer{
+public class BlockShadowRefinery extends BlockContainer{
 
-	public ShadowRefinery(int itemID) {
+	public BlockShadowRefinery(int itemID) {
 		super(itemID, Material.rock);
 		blockIndexInTexture = 8;
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.75F, 1.0F);
@@ -99,7 +99,7 @@ public class ShadowRefinery extends BlockContainer{
 
 	@Override
 	public TileEntity createNewTileEntity(World world) {
-		return new TEShadowRefinery();
+		return new TileEntityShadowRefinery();
 	}
 
 	

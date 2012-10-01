@@ -13,12 +13,12 @@ import net.minecraft.src.MovingObjectPosition;
 import net.minecraft.src.World;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
 
-public class ShadowBucket extends Item
+public class ItemShadowBucket extends Item
 {
     /** field for checking if the bucket has been filled. */
     private int isFull;
 
-    public ShadowBucket(int par1, int par2)
+    public ItemShadowBucket(int par1, int par2)
     {
         super(par1);
         this.maxStackSize = 1;

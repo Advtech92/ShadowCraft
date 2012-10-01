@@ -8,7 +8,7 @@ import net.minecraft.src.StatCollector;
 
 public class GuiShadowRefinery extends GuiContainer {
 
-	public GuiShadowRefinery (InventoryPlayer inventoryPlayer, TEShadowRefinery tileEntity) {
+	public GuiShadowRefinery (InventoryPlayer inventoryPlayer, TileEntityShadowRefinery tileEntity) {
 		super(new ContainerRefinery(inventoryPlayer, tileEntity));
 	}
 

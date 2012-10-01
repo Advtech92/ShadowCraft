@@ -19,23 +19,15 @@ import net.minecraft.src.NBTTagList;
 import net.minecraft.src.TileEntity;
 import net.minecraft.src.WorldClient;
 
-public class TEShadowRefinery extends TileEntity implements IMachine, IPowerReceptor, IInventory{
+public class TileEntityShadowRefinery extends TileEntity implements IMachine, IPowerReceptor, IInventory{
 
 	public ItemStack[] inventory;
 	public LiquidStack shadows;
 	public ILiquidTank tank = new LiquidTank(LiquidManager.BUCKET_VOLUME * 16);
 	protected boolean itemSpawned = false;
 	
-	public TEShadowRefinery(){
+	public TileEntityShadowRefinery(){
 		inventory = new ItemStack[1];
-	}
-
-	@SideOnly(Side.CLIENT)
-	public void updateEntity(){
-		if(!itemSpawned){
-			worldObj.spawnEntityInWorld(new EntityItem(worldObj, xCoord, yCoord + 1, zCoord, new ItemStack(ShadowCraft.shadowIngot)));
-			itemSpawned = true;
-		}
 	}
 	
 	@Override

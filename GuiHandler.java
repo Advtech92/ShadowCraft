@@ -12,8 +12,8 @@ public class GuiHandler implements IGuiHandler {
 	@Override
 	public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
 		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-		if(tileEntity instanceof TEShadowRefinery){
-			return new ContainerRefinery(player.inventory, (TEShadowRefinery) tileEntity);
+		if(tileEntity instanceof TileEntityShadowRefinery){
+			return new ContainerRefinery(player.inventory, (TileEntityShadowRefinery) tileEntity);
 		}
 		return null;
 	}
@@ -21,8 +21,8 @@ public class GuiHandler implements IGuiHandler {
 	@Override
 	public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
 		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-		if(tileEntity instanceof TEShadowRefinery){
-			return new GuiShadowRefinery(player.inventory, (TEShadowRefinery) tileEntity);
+		if(tileEntity instanceof TileEntityShadowRefinery){
+			return new GuiShadowRefinery(player.inventory, (TileEntityShadowRefinery) tileEntity);
 		}
 		return null;
 	}

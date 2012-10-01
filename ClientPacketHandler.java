@@ -25,8 +25,8 @@ public class ClientPacketHandler implements IPacketHandler{
 		int z = ByteBuffer.wrap(payload.data).getInt(8);
 		Minecraft mc = Minecraft.getMinecraft();
 		TileEntity te = mc.theWorld.getBlockTileEntity(x, y, z);
-		if(te instanceof TEShadowCatcher){
-			((TEShadowCatcher) te).setShadows(shadows);
+		if(te instanceof TileEntityShadowCatcher){
+			((TileEntityShadowCatcher) te).setShadows(shadows);
 		}
 	}
 	
