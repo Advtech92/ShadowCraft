@@ -12,10 +12,11 @@ public class ModelShadowCube extends ModelBase
     public ModelRenderer shadowCube = (new ModelRenderer(this, 0, 0)).setTextureSize(64, 64);
 
     public ModelShadowCube(){
-        shadowCube.addBox(0.0F, 0.0F, 0.0F, 14, 10, 14, 0.0F);
+        shadowCube.addBox(0.0F, 0.0F, 0.0F, 10, 10, 10, 0.0F);
+        shadowCube.setRotationPoint(0.5F, 0.5F, 0.5F);
     }
 
     public void render(){
-        shadowCube.render(0.0625F);
+        shadowCube.render(0.03125F);
     }
 }

@@ -59,7 +59,7 @@ import net.minecraft.src.TileEntityRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
-import net.minecraftforge.event.entity.player.*;;
+import net.minecraftforge.event.entity.player.*;
 
 @Mod(modid = "ShadowCraft", name = "ShadowCraft", version = "0.0")
 @NetworkMod(clientSideRequired=true, serverSideRequired=false,

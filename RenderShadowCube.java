@@ -12,6 +12,7 @@ import net.minecraft.src.Render;
 import net.minecraft.src.RenderLiving;
 import net.minecraft.src.TileEntity;
 import net.minecraft.src.TileEntitySpecialRenderer;
+import net.minecraftforge.client.ForgeHooksClient;
 
 @SideOnly(Side.CLIENT)
 public class RenderShadowCube extends TileEntitySpecialRenderer{
@@ -24,8 +25,9 @@ public class RenderShadowCube extends TileEntitySpecialRenderer{
 	
 	public void renderShadowCubeAt(TileEntityShadowRefinery tileEntity, double x, double y, double z, float f){
 		GL11.glPushMatrix();
-		GL11.glTranslatef((float)x + 0.5F, (float)y + 0.75F, (float)z + 0.5F);
-		this.bindTextureByName("/item/shadowcube.png");
+		GL11.glTranslatef((float)x + 0.35F, (float)y + 1F, (float)z + 0.35F);
+		ForgeHooksClient.bindTexture("/item/shadowcube.png", 0);
+		GL11.glRotatef(tileEntity.cubeRotation, 1.0F, 1.0F, 1.0F);
 		this.modelShadowCube.render();
 		GL11.glPopMatrix();
 	}

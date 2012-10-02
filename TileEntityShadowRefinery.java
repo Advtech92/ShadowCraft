@@ -24,6 +24,7 @@ public class TileEntityShadowRefinery extends TileEntity implements IMachine, IP
 	public ItemStack[] inventory;
 	public LiquidStack shadows;
 	public ILiquidTank tank = new LiquidTank(LiquidManager.BUCKET_VOLUME * 16);
+	public float cubeRotation = 0.0F;
 	protected boolean cubeSpawned = false;
 	
 	public TileEntityShadowRefinery(){
@@ -33,6 +34,17 @@ public class TileEntityShadowRefinery extends TileEntity implements IMachine, IP
 	@Override
 	public void updateEntity(){
 		cubeSpawned = true;
+		
+		// Will be replaced with a check to see if it's refining later.
+		if(inventory[0] != null){
+			cubeRotation += 10.0F;
+		}
+		else{
+			cubeRotation += 0.5F;
+		}
+		if(cubeRotation >= 360.0F){
+			cubeRotation = 0.0F;
+		}
 	}
 	
 	@Override
