@@ -15,26 +15,25 @@ import net.minecraft.src.TileEntitySpecialRenderer;
 
 @SideOnly(Side.CLIENT)
 public class RenderShadowCube extends TileEntitySpecialRenderer{
-
+	
 	private ModelShadowCube modelShadowCube;
 	
 	public RenderShadowCube(ModelShadowCube modelShadowCubeArg){
 		modelShadowCube = modelShadowCubeArg;
 	}
 	
-	@SideOnly(Side.CLIENT)
 	public void renderShadowCubeAt(TileEntityShadowRefinery tileEntity, double x, double y, double z, float f){
 		GL11.glPushMatrix();
-        GL11.glTranslatef((float)x + 0.5F, (float)y + 0.75F, (float)z + 0.5F);
-        this.bindTextureByName("/item/shadowcube.png");
-        this.modelShadowCube.render();
-        GL11.glPopMatrix();
+		GL11.glTranslatef((float)x + 0.5F, (float)y + 0.75F, (float)z + 0.5F);
+		this.bindTextureByName("/item/shadowcube.png");
+		this.modelShadowCube.render();
+		GL11.glPopMatrix();
 	}
 	
 	@Override
 	public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float f) {
 		this.renderShadowCubeAt((TileEntityShadowRefinery) tileEntity, x, y, z, f);
 	}
-		
-		
+	
+	
 }
