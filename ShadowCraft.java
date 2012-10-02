@@ -10,7 +10,7 @@ import shadowcraft.block.BlockFlowingShadow;
 import shadowcraft.block.BlockShadowCatcher;
 import shadowcraft.block.BlockShadowRefinery;
 import shadowcraft.block.BlockStillShadow;
-import shadowcraft.client.ClientProxySC;
+import shadowcraft.ClientProxySC;
 import shadowcraft.item.ItemShadowArmor;
 import shadowcraft.item.ItemShadowAxe;
 import shadowcraft.item.ItemShadowBucket;
@@ -31,10 +31,12 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry; 
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.EnumToolMaterial;
@@ -113,7 +115,7 @@ public class ShadowCraft {
 	public static Logger scLog = Logger.getLogger("ShadowCraft");
 	
 	
-	@SidedProxy(clientSide = "shadowcraft.client.ClientProxySC", serverSide = "mod.jackbeepee.common.CommonProxySC")
+	@SidedProxy(clientSide = "shadowcraft.ClientProxySC", serverSide = "mod.jackbeepee.common.CommonProxySC")
     public static ClientProxySC proxy;
 	private GuiHandler guiHandler = new GuiHandler();
 	
@@ -130,7 +132,6 @@ public class ShadowCraft {
 	
 	@Init
 	public void load(FMLInitializationEvent event){
-		
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 		
 		GameRegistry.registerTileEntity(TileEntityShadowCatcher.class, "tileEntityShadowCatcher");
@@ -186,7 +187,7 @@ public class ShadowCraft {
 		liquidShadowMovingID = config.get(config.CATEGORY_BLOCK, "Flowing Liquid Shadow", 139).getInt(139);
 		liquidShadowStillID = config.get(config.CATEGORY_BLOCK, "Still Liquid Shadow", 140).getInt(140);
 		shadowCatcherID = config.get(config.CATEGORY_BLOCK, "Shadow Catcher", 141).getInt(141);
-		shadowRefineryID = config.get(config.CATEGORY_BLOCK, "Shadow Refiner", 142).getInt(142);
+		shadowRefineryID = config.get(config.CATEGORY_BLOCK, "Shadow Refinery", 142).getInt(142);
 
 		
 		config.get(config.CATEGORY_GENERAL, "Shadow Armor Particles", 2).comment = "Particle effects for shadow armor. 0 = off, 1 = decreased, 2 = normal, 3 = maximum";

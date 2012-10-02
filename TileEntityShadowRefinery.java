@@ -24,10 +24,15 @@ public class TileEntityShadowRefinery extends TileEntity implements IMachine, IP
 	public ItemStack[] inventory;
 	public LiquidStack shadows;
 	public ILiquidTank tank = new LiquidTank(LiquidManager.BUCKET_VOLUME * 16);
-	protected boolean itemSpawned = false;
+	protected boolean cubeSpawned = false;
 	
 	public TileEntityShadowRefinery(){
 		inventory = new ItemStack[1];
+	}
+	
+	@Override
+	public void updateEntity(){
+		cubeSpawned = true;
 	}
 	
 	@Override
