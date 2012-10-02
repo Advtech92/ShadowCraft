@@ -54,6 +54,7 @@ import net.minecraft.src.Block;
 import net.minecraft.src.ItemSword;
 import net.minecraft.src.Material;
 import net.minecraft.src.ModLoader;
+import net.minecraft.src.TileEntityRenderer;
 
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.Configuration;
@@ -136,6 +137,8 @@ public class ShadowCraft {
 		
 		GameRegistry.registerTileEntity(TileEntityShadowCatcher.class, "tileEntityShadowCatcher");
 		GameRegistry.registerTileEntity(TileEntityShadowRefinery.class, "tileEntityShadowRefinery");
+		
+    	TileEntityRenderer.instance.specialRendererMap.put(TileEntityShadowRefinery.class, new RenderShadowCube(new ModelShadowCube()));
 		
 		proxy.registerRenderThings();
  

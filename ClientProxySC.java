@@ -10,6 +10,6 @@ public class ClientProxySC extends CommonProxySC
     public void registerRenderThings(){
     	MinecraftForgeClient.preloadTexture("/gui/scitemtex.png");
     	MinecraftForgeClient.preloadTexture("/gui/scblocktex.png");
-    	TileEntityRenderer.instance.specialRendererMap.put(TileEntityShadowRefinery.class, new RenderShadowCube());
+    	MinecraftForgeClient.preloadTexture("/item/shadowcube.png");
     }
 }
