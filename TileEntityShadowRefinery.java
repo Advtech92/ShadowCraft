@@ -1,11 +1,14 @@
 package shadowcraft;
 
+import java.nio.ByteBuffer;
 import java.util.Random;
 
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import cpw.mods.fml.common.network.PacketDispatcher;
 import buildcraft.api.core.Orientations;
 import buildcraft.api.liquids.ILiquidTank;
+import buildcraft.api.liquids.ITankContainer;
 import buildcraft.api.liquids.LiquidManager;
 import buildcraft.api.liquids.LiquidStack;
 import buildcraft.api.liquids.LiquidTank;
@@ -15,28 +18,32 @@ import buildcraft.api.power.PowerFramework;
 import buildcraft.core.IMachine;
 import buildcraft.core.network.TileNetworkData;
 import buildcraft.factory.TileMachine;
+import buildcraft.factory.TileTank;
 import net.minecraft.client.Minecraft;
+import net.minecraft.src.Block;
 import net.minecraft.src.EntityItem;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IInventory;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.NBTTagList;
+import net.minecraft.src.Packet;
+import net.minecraft.src.Packet250CustomPayload;
 import net.minecraft.src.TileEntity;
 import net.minecraft.src.WorldClient;
 
-public class TileEntityShadowRefinery extends TileMachine implements IMachine, IPowerReceptor, IInventory{
+public class TileEntityShadowRefinery extends TileMachine implements IMachine, IPowerReceptor, IInventory, ITankContainer{
 
-	
 	public IPowerProvider powerProvider;
 	public ItemStack[] inventory;
 	public LiquidStack shadows;
-	public ILiquidTank tank = new LiquidTank(LiquidManager.BUCKET_VOLUME * 16);
+	public ILiquidTank tank = new LiquidTank(LiquidManager.BUCKET_VOLUME * 10);
 	public float cubeRotation = 0.0F;
 	protected boolean cubeSpawned = false;
 	public int refineryProgress = 0;
 	@TileNetworkData
 	public int guiProgress = 0;
+	public boolean hasTankUpdate;
 	
 	public TileEntityShadowRefinery(){
 		inventory = new ItemStack[1];
@@ -128,6 +135,9 @@ public class TileEntityShadowRefinery extends TileMachine implements IMachine, I
     			inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
     		}
     	}
+    	refineryProgress = tagCompound.getInteger("Progress");
+    	tank.setLiquid(LiquidStack.loadLiquidStackFromNBT(tagCompound));
+    	
 	}
 
 	@Override
@@ -145,6 +155,10 @@ public class TileEntityShadowRefinery extends TileMachine implements IMachine, I
     		}
     	}
     	tagCompound.setTag("Inventory", itemList);
+    	tagCompound.setInteger("Progress", refineryProgress);
+    	if(tank.getLiquid() != null){
+    		tank.getLiquid().writeToNBT(tagCompound);
+    	}
 	}
 
 	@Override
@@ -188,7 +202,10 @@ public class TileEntityShadowRefinery extends TileMachine implements IMachine, I
 	}
 	
 	public void refine(){
-		refineryProgress += 1;
+		if(tank.getLiquid() == null || tank.getLiquid().amount < LiquidManager.BUCKET_VOLUME){
+			return;
+		}
+		refineryProgress += 10;
 		if(!(getStackInSlot(0) == null)){
 			if(getStackInSlot(0).itemID != getStackInSlot(0).itemID){
 				dropItems(0);
@@ -210,10 +227,12 @@ public class TileEntityShadowRefinery extends TileMachine implements IMachine, I
 			}
 			setInventorySlotContents(0, newItem);
 			refineryProgress = 0;
+			tank.drain(1000, true);
+            PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 100, worldObj.getWorldInfo().getDimension(), getDescriptionPacket());
 		}
 	}
 	
-	@SideOnly(Side.CLIENT)
+	@SideOnly(Side.SERVER)
 	public void dropItems(int slot){
 		Random rand = new Random();
 		ItemStack item = getStackInSlot(slot);
@@ -239,6 +258,58 @@ public class TileEntityShadowRefinery extends TileMachine implements IMachine, I
 			item.stackSize = 0;
 			inventory[slot] = null;
 		}
+	}
+	
+	@Override
+    public int fill(Orientations from, LiquidStack resource, boolean doFill)
+    {
+		return fill(0, resource, doFill);
+    }
+
+	@Override
+	public int fill(int tankIndex, LiquidStack resource, boolean doFill) {
+		int totalUsed = 0;
+		if(!(resource.isLiquidEqual(new LiquidStack(ShadowCraft.liquidShadowStill, 1)))){
+			return 0;
+		}
+		
+        while(resource.amount > 0 && ((tank.getLiquid() == null) || (tank.getLiquid().amount != tank.getCapacity()))){
+            int used = tank.fill(resource, doFill);
+            resource.amount -= used;
+            totalUsed += used;
+        }
+        if(totalUsed > 0){
+            PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 100, worldObj.getWorldInfo().getDimension(), getDescriptionPacket());
+		}
+        return totalUsed;
+	}
+
+	@Override
+	public LiquidStack drain(Orientations from, int maxDrain, boolean doDrain) {
+		return null;
+	}
+
+	@Override
+	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain) {
+		return null;
+	}
+
+	@Override
+	public ILiquidTank[] getTanks() {
+		return new ILiquidTank[] { tank };
+	}
+	
+	@Override
+	public Packet getDescriptionPacket(){
+		int amount = 0;
+		if(tank.getLiquid() == null){
+			amount = -1;
+		}
+		else{
+			amount = tank.getLiquid().amount;
+		}
+		byte[] bytes = ByteBuffer.allocate(16).putInt(xCoord).putInt(yCoord).putInt(zCoord).putInt(amount).array();
+		return new Packet250CustomPayload("ShadowCraft", bytes);
 	}
 
 }

@@ -4,6 +4,9 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.nio.ByteBuffer;
 
+import buildcraft.api.liquids.LiquidManager;
+import buildcraft.api.liquids.LiquidStack;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.NetworkManager;
 import net.minecraft.src.Packet132TileEntityData;
@@ -19,14 +22,22 @@ public class ClientPacketHandler implements IPacketHandler{
 	@Override
 	public void onPacketData(NetworkManager manager, Packet250CustomPayload payload, Player player){
 		DataInputStream data = new DataInputStream(new ByteArrayInputStream(payload.data));
-		int shadows = ByteBuffer.wrap(payload.data).getInt(12);
 		int x = ByteBuffer.wrap(payload.data).getInt(0);
 		int y = ByteBuffer.wrap(payload.data).getInt(4);
 		int z = ByteBuffer.wrap(payload.data).getInt(8);
+		int i = ByteBuffer.wrap(payload.data).getInt(12);
 		Minecraft mc = Minecraft.getMinecraft();
 		TileEntity te = mc.theWorld.getBlockTileEntity(x, y, z);
 		if(te instanceof TileEntityShadowCatcher){
-			((TileEntityShadowCatcher) te).setShadows(shadows);
+			((TileEntityShadowCatcher) te).setShadows(i);
+		}
+		else if(te instanceof TileEntityShadowRefinery){		
+			if(i == -1){
+				((TileEntityShadowRefinery) te).tank.setLiquid(new LiquidStack(ShadowCraft.liquidShadowStill, 0));
+			}
+			else{
+				((TileEntityShadowRefinery) te).tank.setLiquid(new LiquidStack(ShadowCraft.liquidShadowStill, i));
+			}
 		}
 	}
 	

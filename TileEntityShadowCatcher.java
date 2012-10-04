@@ -54,6 +54,7 @@ public class TileEntityShadowCatcher extends TileEntity implements IMachine {
 	public void updateEntity(){
 		lightLevel = worldObj.getBlockLightValue(xCoord, yCoord + 1, zCoord);
 		boolean isCheatyBlockAbove = !worldObj.isAirBlock(xCoord, yCoord + 1, zCoord);
+		
 		if((lightLevel < 3) && (!isCheatyBlockAbove) && (!(shadows == 10000))){
 			shadows += 10;
 		}
