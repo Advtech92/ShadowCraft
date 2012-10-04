@@ -8,8 +8,11 @@ import net.minecraft.src.StatCollector;
 
 public class GuiShadowRefinery extends GuiContainer {
 
+	public TileEntityShadowRefinery shadowRefinery;
+	
 	public GuiShadowRefinery (InventoryPlayer inventoryPlayer, TileEntityShadowRefinery tileEntity) {
 		super(new ContainerRefinery(inventoryPlayer, tileEntity));
+		shadowRefinery = tileEntity;
 	}
 
 	@Override
@@ -26,6 +29,7 @@ public class GuiShadowRefinery extends GuiContainer {
 		int x = (width - xSize) / 2;
 		int y = (height - ySize) / 2;
 		this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+		this.drawTexturedModalRect(218, guiTop + 33, xSize + 1, 2, shadowRefinery.guiProgress, 16);
 	}
 
 }

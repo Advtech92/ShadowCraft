@@ -17,6 +17,6 @@ public class ModelShadowCube extends ModelBase
     }
 
     public void render(){
-        shadowCube.render(0.03125F);
+        shadowCube.render(0.03F);
     }
 }
