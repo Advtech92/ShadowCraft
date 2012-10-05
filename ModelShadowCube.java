@@ -14,7 +14,7 @@ public class ModelShadowCube extends ModelBase
     public ModelShadowCube(){
         shadowCube.addBox(0.0F, 0.0F, 0.0F, 10, 10, 10, 0.0F);
         shadowCube.setTextureOffset(0, 0);
-        shadowCube.textureHeight = 32;
+        shadowCube.textureHeight = 64;
         shadowCube.textureWidth = 64;
         shadowCube.setRotationPoint(0.5F, 0.5F, 0.5F);
     }

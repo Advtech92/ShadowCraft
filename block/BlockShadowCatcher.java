@@ -28,7 +28,7 @@ public class BlockShadowCatcher extends BlockContainer{
 	public BlockShadowCatcher(int par1) {
 		super(par1, Material.rock);
 		blockIndexInTexture = 5;
-		setBlockName("blockTutorial");
+		setBlockName("shadowCatcher");
 		setCreativeTab(CreativeTabs.tabMisc);
 	}
 	

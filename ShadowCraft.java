@@ -6,14 +6,17 @@ import buildcraft.api.liquids.LiquidData;
 import buildcraft.api.liquids.LiquidManager;
 import buildcraft.api.liquids.LiquidStack;
 
+import shadowcraft.block.BlockDarkOre;
 import shadowcraft.block.BlockFlowingShadow;
 import shadowcraft.block.BlockShadowCatcher;
+import shadowcraft.block.BlockShadowCraft;
 import shadowcraft.block.BlockShadowRefinery;
 import shadowcraft.block.BlockStillShadow;
 import shadowcraft.ClientProxySC;
 import shadowcraft.item.ItemShadowArmor;
 import shadowcraft.item.ItemShadowAxe;
 import shadowcraft.item.ItemShadowBucket;
+import shadowcraft.item.ItemShadowCraft;
 import shadowcraft.item.ItemShadowIngot;
 import shadowcraft.item.ItemShadowPickaxe;
 import shadowcraft.item.ItemShadowShovel;
@@ -69,14 +72,13 @@ public class ShadowCraft {
 	
 	@Instance("ShadowCraft")
 	public static ShadowCraft instance = new ShadowCraft();
-	
-	public static String itemsPng = "/ForgeTutorials/Buckets/items.png";
-    public static String terrainPng = "/ForgeTutorials/Buckets/terrain.png";
     
 	public static Block liquidShadowStill;
 	public static Block liquidShadowMoving;
 	public static Block shadowCatcher;
 	public static Block shadowRefinery;
+	public static Block darkOre;
+	public static Block shadowBlock;
 	
 	public static Item obsidianBucket;
 	public static Item shadowBucket;
@@ -90,6 +92,7 @@ public class ShadowCraft {
 	public static Item shadowShovel;
 	public static Item shadowPickaxe;
 	public static Item shadowAxe;
+	public static Item shadowCrystal;
 	
 	public static int obsidianBucketID;
 	public static int shadowBucketID;
@@ -102,11 +105,14 @@ public class ShadowCraft {
 	public static int shadowShovelID;
 	public static int shadowPickaxeID;
 	public static int shadowAxeID;
+	public static int shadowCrystalID;
 	
 	public static int liquidShadowMovingID;
 	public static int liquidShadowStillID;
 	public static int shadowCatcherID;
 	public static int shadowRefineryID;
+	public static int darkOreID;
+	public static int shadowBlockID;
 	
 	public static int shadowArmorParticles;
 	
@@ -163,11 +169,15 @@ public class ShadowCraft {
 		/*
 		 * Add Buildcraft Liquids
 		 */
-		scLog.info("Adding BC liquids...");
+		scLog.info("Adding BC liquids... ");
 		LiquidManager.liquids.add(new LiquidData(new LiquidStack(liquidShadowStill, LiquidManager.BUCKET_VOLUME), new LiquidStack(liquidShadowMoving, LiquidManager.BUCKET_VOLUME), new ItemStack(shadowBucket), new ItemStack(obsidianBucket)));
-
+		
 		scLog.info("Registering tick handler");
 		TickRegistry.registerTickHandler(new ClientTickHandler(shadowHelmet, shadowChestplate, shadowLeggings, shadowBoots), Side.CLIENT);
+
+		scLog.info("Registering world generation");
+		GameRegistry.registerWorldGenerator(new WorldGeneratorShadowCraft());
+		
 	}
 	
 	public void loadConfig(FMLPreInitializationEvent event){
@@ -184,14 +194,16 @@ public class ShadowCraft {
 		shadowShovelID = config.get(config.CATEGORY_ITEM, "Shadow Shovel", 152).getInt(152);
 		shadowPickaxeID = config.get(config.CATEGORY_ITEM, "Shadow Pickaxe", 153).getInt(153);
 		shadowAxeID = config.get(config.CATEGORY_ITEM, "Shadow Axe", 154).getInt(154);
-
+		shadowCrystalID = config.get(config.CATEGORY_ITEM, "Caliginous Crystal", 155).getInt(155);
 
 		
 		liquidShadowMovingID = config.get(config.CATEGORY_BLOCK, "Flowing Liquid Shadow", 139).getInt(139);
 		liquidShadowStillID = config.get(config.CATEGORY_BLOCK, "Still Liquid Shadow", 140).getInt(140);
 		shadowCatcherID = config.get(config.CATEGORY_BLOCK, "Shadow Catcher", 141).getInt(141);
 		shadowRefineryID = config.get(config.CATEGORY_BLOCK, "Shadow Refinery", 142).getInt(142);
-
+		darkOreID = config.get(config.CATEGORY_BLOCK, "Dark Ore", 143).getInt(143);
+		shadowBlockID = config.get(config.CATEGORY_BLOCK, "Cryptic Block", 144).getInt(144);
+		
 		
 		config.get(config.CATEGORY_GENERAL, "Shadow Armor Particles", 2).comment = "Particle effects for shadow armor. 0 = off, 1 = decreased, 2 = normal, 3 = maximum";
 		shadowArmorParticles = config.get(config.CATEGORY_GENERAL, "Shadow Armor Particles", 2).getInt(2);
@@ -219,6 +231,16 @@ public class ShadowCraft {
 		shadowRefinery = new BlockShadowRefinery(shadowRefineryID).setHardness(5.0F).setResistance(2000.0F);
 		GameRegistry.registerBlock(shadowRefinery);
 		LanguageRegistry.addName(shadowRefinery, "Shadow Refinery");
+		
+		darkOre = new BlockDarkOre(darkOreID).setHardness(10.0F).setResistance(500.0F);
+		GameRegistry.registerBlock(darkOre);
+		LanguageRegistry.addName(darkOre, "Dark Ore");
+		
+		shadowBlock = new BlockShadowCraft(shadowBlockID, Material.rock).setHardness(10.0F).setResistance(500.0F).setBlockName("shadowBlock");
+		shadowBlock.blockIndexInTexture = 16 + 6;
+		GameRegistry.registerBlock(shadowBlock);
+		LanguageRegistry.addName(shadowBlock, "Cryptic Block");
+		
 		
 	}
 	
@@ -259,6 +281,9 @@ public class ShadowCraft {
         shadowAxe = new ItemShadowAxe(shadowAxeID, shadowToolMaterial).setIconIndex((16 * 7) + 15).setItemName("shadowAxe");
         shadowAxe.setTextureFile("/gui/scitemtex.png");
         LanguageRegistry.addName(shadowAxe, "Nature's Nightmare");
+        
+        shadowCrystal = new ItemShadowCraft(shadowCrystalID).setIconIndex(4).setItemName("shadowCrystal").setCreativeTab(CreativeTabs.tabMaterials);
+        LanguageRegistry.addName(shadowCrystal, "Caliginous Crystal");
 	}
 	
 	public void addRecipes(){
@@ -275,6 +300,8 @@ public class ShadowCraft {
 		GameRegistry.addRecipe(new ItemStack(shadowShovel, 1), new Object[] {"#", "O", "O", '#', shadowIngot, 'O', Block.obsidian});
 		GameRegistry.addRecipe(new ItemStack(shadowPickaxe, 1), new Object[] {"###", " O ", " O ", '#', shadowIngot, 'O', Block.obsidian});
 		GameRegistry.addRecipe(new ItemStack(shadowAxe, 1), new Object[] {"##", "#O", " O", '#', shadowIngot, 'O', Block.obsidian});
-
+		GameRegistry.addRecipe(new ItemStack(shadowBlock, 1), new Object[] {"##", "##", '#', shadowCrystal});
+		GameRegistry.addRecipe(new ItemStack(shadowCatcher, 1), new Object[] {"###", "#L#", "###", '#', shadowBlock, 'L', Item.bucketLava});
+		
 	}
 }
