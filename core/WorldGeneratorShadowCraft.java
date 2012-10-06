@@ -2,7 +2,6 @@ package shadowcraft.core;
 
 import java.util.Random;
 
-import shadowcraft.ShadowCraft;
 import shadowcraft.ShadowCraftShadow;
 
 import net.minecraft.src.IChunkProvider;

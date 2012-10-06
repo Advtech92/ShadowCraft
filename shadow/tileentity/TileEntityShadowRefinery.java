@@ -3,7 +3,6 @@ package shadowcraft.shadow.tileentity;
 import java.nio.ByteBuffer;
 import java.util.Random;
 
-import shadowcraft.ShadowCraft;
 import shadowcraft.ShadowCraftShadow;
 
 import cpw.mods.fml.common.Side;
@@ -21,9 +20,6 @@ import buildcraft.api.power.PowerFramework;
 import buildcraft.core.IMachine;
 import buildcraft.core.network.TileNetworkData;
 import buildcraft.factory.TileMachine;
-import buildcraft.factory.TileTank;
-import net.minecraft.client.Minecraft;
-import net.minecraft.src.Block;
 import net.minecraft.src.EntityItem;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IInventory;
@@ -32,8 +28,6 @@ import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.NBTTagList;
 import net.minecraft.src.Packet;
 import net.minecraft.src.Packet250CustomPayload;
-import net.minecraft.src.TileEntity;
-import net.minecraft.src.WorldClient;
 
 public class TileEntityShadowRefinery extends TileMachine implements IMachine, IPowerReceptor, IInventory, ITankContainer{
 
@@ -215,7 +209,7 @@ public class TileEntityShadowRefinery extends TileMachine implements IMachine, I
 				dropItems(0);
 			}
 		}
-		int tGuiProgress = (int) ((refineryProgress * 25) / 10000);
+		int tGuiProgress = (refineryProgress * 25) / 10000;
 		if(tGuiProgress != guiProgress){
 			guiProgress = tGuiProgress;
 			sendNetworkUpdate();

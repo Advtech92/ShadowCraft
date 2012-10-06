@@ -2,7 +2,6 @@ package shadowcraft.shadow;
 
 import org.lwjgl.opengl.GL11;
 
-import shadowcraft.ShadowCraft;
 import shadowcraft.ShadowCraftShadow;
 import shadowcraft.shadow.tileentity.TileEntityShadowRefinery;
 
@@ -38,8 +37,8 @@ public class GuiShadowRefinery extends GuiContainer {
 		else{
 			liquid = tank.getLiquid().amount;
 		}
-		fontRenderer.drawString(Integer.toString((int) liquid / LiquidManager.BUCKET_VOLUME), 8, 16, 0xff808080);
-		displayGauge(10, 10, 3, 52, (int) ((liquid * 58) / 10000), ShadowCraftShadow.liquidShadowMovingID);
+		fontRenderer.drawString(Integer.toString(liquid / LiquidManager.BUCKET_VOLUME), 8, 16, 0xff808080);
+		displayGauge(10, 10, 3, 52, (liquid * 58) / 10000, ShadowCraftShadow.liquidShadowMovingID);
 	}
 
 	@Override

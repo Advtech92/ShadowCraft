@@ -7,11 +7,6 @@ import shadowcraft.shadow.tileentity.TileEntityShadowRefinery;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 
-import net.minecraft.src.Entity;
-import net.minecraft.src.EntityLiving;
-import net.minecraft.src.ModelBase;
-import net.minecraft.src.Render;
-import net.minecraft.src.RenderLiving;
 import net.minecraft.src.TileEntity;
 import net.minecraft.src.TileEntitySpecialRenderer;
 import net.minecraftforge.client.ForgeHooksClient;

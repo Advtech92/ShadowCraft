@@ -1,10 +1,5 @@
 package shadowcraft.shadow.item;
 
-import java.awt.List;
-
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
-
 import net.minecraft.src.EnumRarity;
 import net.minecraft.src.EnumToolMaterial;
 import net.minecraft.src.ItemPickaxe;

@@ -3,19 +3,15 @@ package shadowcraft.shadow;
 import java.util.EnumSet;
 import java.util.Random;
 
-import shadowcraft.ShadowCraft;
 import shadowcraft.ShadowCraftShadow;
 
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 import net.minecraft.client.Minecraft;
-import net.minecraft.src.DamageSource;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.GuiScreen;
-import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.MathHelper;
-import net.minecraft.src.World;
 
 public class ClientTickHandler implements ITickHandler{
 

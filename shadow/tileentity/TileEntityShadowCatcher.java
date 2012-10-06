@@ -2,27 +2,16 @@ package shadowcraft.shadow.tileentity;
 
 import java.nio.ByteBuffer;
 
-import shadowcraft.ShadowCraft;
 import shadowcraft.ShadowCraftShadow;
 
 import buildcraft.api.core.Orientations;
 import buildcraft.api.core.Position;
-import buildcraft.api.liquids.ILiquidTank;
 import buildcraft.api.liquids.ITankContainer;
 import buildcraft.api.liquids.LiquidManager;
 import buildcraft.api.liquids.LiquidStack;
 import buildcraft.core.IMachine;
-import buildcraft.core.network.TileNetworkData;
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
-import net.minecraft.src.Block;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.IInventory;
-import net.minecraft.src.ItemStack;
 import net.minecraft.src.NBTTagCompound;
-import net.minecraft.src.NBTTagList;
 import net.minecraft.src.Packet;
-import net.minecraft.src.Packet132TileEntityData;
 import net.minecraft.src.Packet250CustomPayload;
 import net.minecraft.src.TileEntity;
 
@@ -34,12 +23,14 @@ public class TileEntityShadowCatcher extends TileEntity implements IMachine {
 	public TileEntityShadowCatcher() {
 	}
 
+	@Override
 	public void readFromNBT(NBTTagCompound tagCompound){
 		super.readFromNBT(tagCompound);
         shadows = tagCompound.getInteger("shadows");
         super.updateEntity();
 	}
 	
+	@Override
 	public void writeToNBT(NBTTagCompound tagCompound){
 		super.writeToNBT(tagCompound);
         tagCompound.setInteger("shadows", shadows);
@@ -54,6 +45,7 @@ public class TileEntityShadowCatcher extends TileEntity implements IMachine {
 	}
 	
 	
+	@Override
 	public void updateEntity(){
 		lightLevel = worldObj.getBlockLightValue(xCoord, yCoord + 1, zCoord);
 		boolean isCheatyBlockAbove = !worldObj.isAirBlock(xCoord, yCoord + 1, zCoord);

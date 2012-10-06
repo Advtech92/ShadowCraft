@@ -2,7 +2,6 @@ package shadowcraft.core;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
-import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.NetworkManager;
 import net.minecraft.src.Packet250CustomPayload;
 import cpw.mods.fml.common.network.IPacketHandler;

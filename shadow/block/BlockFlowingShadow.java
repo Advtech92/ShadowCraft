@@ -2,11 +2,9 @@ package shadowcraft.shadow.block;
 
 import java.util.Random;
 
-import shadowcraft.ShadowCraft;
 import shadowcraft.ShadowCraftShadow;
 
 import net.minecraft.src.Block;
-import net.minecraft.src.BlockFluid;
 import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
@@ -46,7 +44,8 @@ public class BlockFlowingShadow extends BlockLiquidBase
         par1World.markBlocksDirty(par2, par3, par4, par2, par3, par4);
     }
 
-    public boolean getBlocksMovement(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+    @Override
+	public boolean getBlocksMovement(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
     {
         return this.blockMaterial != Material.lava;
     }
@@ -54,7 +53,8 @@ public class BlockFlowingShadow extends BlockLiquidBase
     /**
      * Ticks the block if it's been scheduled
      */
-    public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
+    @Override
+	public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
     {
         int var6 = this.getFlowDecay(par1World, par2, par3, par4);
         byte var7 = 1;
@@ -416,7 +416,8 @@ public class BlockFlowingShadow extends BlockLiquidBase
     /**
      * Called whenever the block is added into the world. Args: world, x, y, z
      */
-    public void onBlockAdded(World par1World, int par2, int par3, int par4)
+    @Override
+	public void onBlockAdded(World par1World, int par2, int par3, int par4)
     {
         super.onBlockAdded(par1World, par2, par3, par4);
 

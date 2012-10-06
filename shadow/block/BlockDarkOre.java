@@ -2,14 +2,10 @@ package shadowcraft.shadow.block;
 
 import java.util.Random;
 
-import shadowcraft.ShadowCraft;
 import shadowcraft.ShadowCraftShadow;
 
-import net.minecraft.src.Block;
 import net.minecraft.src.BlockOre;
 import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.Item;
-import net.minecraft.src.Material;
 
 public class BlockDarkOre extends BlockOre{
 

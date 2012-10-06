@@ -1,6 +1,5 @@
 package shadowcraft.core.item;
 
-import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Item;
 
 public class ItemShadowCraft extends Item{

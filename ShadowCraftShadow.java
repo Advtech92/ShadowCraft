@@ -17,13 +17,10 @@ import net.minecraft.src.ModLoader;
 import net.minecraft.src.TileEntityRenderer;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
-import shadowcraft.core.ClientPacketHandler;
-import shadowcraft.core.ServerPacketHandler;
 import shadowcraft.core.block.BlockShadowCraft;
 import shadowcraft.core.item.ItemShadowCraft;
 import shadowcraft.shadow.ClientProxy;
 import shadowcraft.shadow.ClientTickHandler;
-import shadowcraft.shadow.CommonProxy;
 import shadowcraft.shadow.ModelShadowCube;
 import shadowcraft.shadow.RenderShadowCube;
 import shadowcraft.shadow.block.BlockDarkOre;
@@ -51,7 +48,6 @@ import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
-import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
@@ -153,33 +149,33 @@ public class ShadowCraftShadow {
 	public void loadConfig(FMLPreInitializationEvent event){
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		
-		obsidianBucketID = config.get(config.CATEGORY_ITEM, "Obsidian Bucket", 144).getInt(144);
-		shadowBucketID = config.get(config.CATEGORY_ITEM, "Shadow Bucket", 145).getInt(145);
-		shadowIngotID = config.get(config.CATEGORY_ITEM, "Shadow Ingot", 146).getInt(146);
-		shadowHelmetID = config.get(config.CATEGORY_ITEM, "Shadow Helmet", 147).getInt(147);
-		shadowChestplateID = config.get(config.CATEGORY_ITEM, "Shadow Chestplate", 148).getInt(148);
-		shadowLeggingsID = config.get(config.CATEGORY_ITEM, "Shadow Leggings", 149).getInt(149);
-		shadowBootsID = config.get(config.CATEGORY_ITEM, "Shadow Boots", 150).getInt(150);
-		shadowSwordID = config.get(config.CATEGORY_ITEM, "Shadow Sword", 151).getInt(151);
-		shadowShovelID = config.get(config.CATEGORY_ITEM, "Shadow Shovel", 152).getInt(152);
-		shadowPickaxeID = config.get(config.CATEGORY_ITEM, "Shadow Pickaxe", 153).getInt(153);
-		shadowAxeID = config.get(config.CATEGORY_ITEM, "Shadow Axe", 154).getInt(154);
-		shadowCrystalID = config.get(config.CATEGORY_ITEM, "Caliginous Crystal", 155).getInt(155);
+		obsidianBucketID = config.get(Configuration.CATEGORY_ITEM, "Obsidian Bucket", 144).getInt(144);
+		shadowBucketID = config.get(Configuration.CATEGORY_ITEM, "Shadow Bucket", 145).getInt(145);
+		shadowIngotID = config.get(Configuration.CATEGORY_ITEM, "Shadow Ingot", 146).getInt(146);
+		shadowHelmetID = config.get(Configuration.CATEGORY_ITEM, "Shadow Helmet", 147).getInt(147);
+		shadowChestplateID = config.get(Configuration.CATEGORY_ITEM, "Shadow Chestplate", 148).getInt(148);
+		shadowLeggingsID = config.get(Configuration.CATEGORY_ITEM, "Shadow Leggings", 149).getInt(149);
+		shadowBootsID = config.get(Configuration.CATEGORY_ITEM, "Shadow Boots", 150).getInt(150);
+		shadowSwordID = config.get(Configuration.CATEGORY_ITEM, "Shadow Sword", 151).getInt(151);
+		shadowShovelID = config.get(Configuration.CATEGORY_ITEM, "Shadow Shovel", 152).getInt(152);
+		shadowPickaxeID = config.get(Configuration.CATEGORY_ITEM, "Shadow Pickaxe", 153).getInt(153);
+		shadowAxeID = config.get(Configuration.CATEGORY_ITEM, "Shadow Axe", 154).getInt(154);
+		shadowCrystalID = config.get(Configuration.CATEGORY_ITEM, "Caliginous Crystal", 155).getInt(155);
 
 		
-		liquidShadowMovingID = config.get(config.CATEGORY_BLOCK, "Flowing Liquid Shadow", 139).getInt(139);
-		liquidShadowStillID = config.get(config.CATEGORY_BLOCK, "Still Liquid Shadow", 140).getInt(140);
-		shadowCatcherID = config.get(config.CATEGORY_BLOCK, "Shadow Catcher", 141).getInt(141);
-		shadowRefineryID = config.get(config.CATEGORY_BLOCK, "Shadow Refinery", 142).getInt(142);
-		darkOreID = config.get(config.CATEGORY_BLOCK, "Dark Ore", 143).getInt(143);
-		shadowBlockID = config.get(config.CATEGORY_BLOCK, "Cryptic Block", 144).getInt(144);
+		liquidShadowMovingID = config.get(Configuration.CATEGORY_BLOCK, "Flowing Liquid Shadow", 139).getInt(139);
+		liquidShadowStillID = config.get(Configuration.CATEGORY_BLOCK, "Still Liquid Shadow", 140).getInt(140);
+		shadowCatcherID = config.get(Configuration.CATEGORY_BLOCK, "Shadow Catcher", 141).getInt(141);
+		shadowRefineryID = config.get(Configuration.CATEGORY_BLOCK, "Shadow Refinery", 142).getInt(142);
+		darkOreID = config.get(Configuration.CATEGORY_BLOCK, "Dark Ore", 143).getInt(143);
+		shadowBlockID = config.get(Configuration.CATEGORY_BLOCK, "Cryptic Block", 144).getInt(144);
 		
 		
-		config.get(config.CATEGORY_GENERAL, "Shadow Armor Particles", 2).comment = "Particle effects for shadow armor. 0 = off, 1 = decreased, 2 = normal, 3 = maximum";
-		shadowArmorParticles = config.get(config.CATEGORY_GENERAL, "Shadow Armor Particles", 2).getInt(2);
+		config.get(Configuration.CATEGORY_GENERAL, "Shadow Armor Particles", 2).comment = "Particle effects for shadow armor. 0 = off, 1 = decreased, 2 = normal, 3 = maximum";
+		shadowArmorParticles = config.get(Configuration.CATEGORY_GENERAL, "Shadow Armor Particles", 2).getInt(2);
 		
-		config.get(config.CATEGORY_GENERAL, "Shadow Catcher Output", 1).comment = "Amount of liquid produced by shadow catcher. 1 = normal, 2 = 2x normal, 3 = 3x normal, etc.";
-		shadowCatcherOutputMultiplier = config.get(config.CATEGORY_GENERAL, "Shadow Catcher Output", 1).getInt(1);
+		config.get(Configuration.CATEGORY_GENERAL, "Shadow Catcher Output", 1).comment = "Amount of liquid produced by shadow catcher. 1 = normal, 2 = 2x normal, 3 = 3x normal, etc.";
+		shadowCatcherOutputMultiplier = config.get(Configuration.CATEGORY_GENERAL, "Shadow Catcher Output", 1).getInt(1);
 		
 		config.save();
 	}

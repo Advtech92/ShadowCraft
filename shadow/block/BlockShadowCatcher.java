@@ -2,23 +2,12 @@ package shadowcraft.shadow.block;
 
 import java.util.Random;
 
-import shadowcraft.ShadowCraft;
 import shadowcraft.shadow.tileentity.TileEntityShadowCatcher;
-
-import buildcraft.api.power.IPowerProvider;
-import buildcraft.api.power.IPowerReceptor;
-
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
 
 import net.minecraft.src.BlockContainer;
 import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.EntityItem;
 import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.IInventory;
-import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
-import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.TileEntity;
 import net.minecraft.src.World;
 
@@ -43,15 +32,15 @@ public class BlockShadowCatcher extends BlockContainer{
 		boolean isCheatyBlockAbove = !world.isAirBlock(x, y + 1, z);
 		if((lightLevel < 3) && (!isCheatyBlockAbove)){
 			Random r = new Random();
-			float var7 = (float)x + 0.5F;
-			float var8 = (float)y + 0.0F + par5Random.nextFloat() * 6.0F / 16.0F;
-			float var9 = (float)z + 0.5F;
+			float var7 = x + 0.5F;
+			float var8 = y + 0.0F + par5Random.nextFloat() * 6.0F / 16.0F;
+			float var9 = z + 0.5F;
 			float var10 = 0.52F;
 			float var11 = par5Random.nextFloat() * 0.6F - 0.3F;
-			world.spawnParticle(list[r.nextInt(list.length)], (double)(var7 - var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
-			world.spawnParticle(list[r.nextInt(list.length)], (double)(var7 + var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
-			world.spawnParticle(list[r.nextInt(list.length)], (double)(var7 + var11), (double)var8, (double)(var9 - var10), 0.0D, 0.0D, 0.0D);
-			world.spawnParticle(list[r.nextInt(list.length)], (double)(var7 + var11), (double)var8, (double)(var9 + var10), 0.0D, 0.0D, 0.0D);
+			world.spawnParticle(list[r.nextInt(list.length)], var7 - var10, var8, var9 + var11, 0.0D, 0.0D, 0.0D);
+			world.spawnParticle(list[r.nextInt(list.length)], var7 + var10, var8, var9 + var11, 0.0D, 0.0D, 0.0D);
+			world.spawnParticle(list[r.nextInt(list.length)], var7 + var11, var8, var9 - var10, 0.0D, 0.0D, 0.0D);
+			world.spawnParticle(list[r.nextInt(list.length)], var7 + var11, var8, var9 + var10, 0.0D, 0.0D, 0.0D);
 		}
 	}
 	

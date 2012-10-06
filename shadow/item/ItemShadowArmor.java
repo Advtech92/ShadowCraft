@@ -1,13 +1,9 @@
 package shadowcraft.shadow.item;
 
-import shadowcraft.ShadowCraft;
 import shadowcraft.ShadowCraftShadow;
-import net.minecraft.src.Entity;
-import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.ItemArmor;
 import net.minecraft.src.ItemStack;
-import net.minecraft.src.World;
 import net.minecraftforge.common.IArmorTextureProvider;
 
 public class ItemShadowArmor extends ItemArmor implements IArmorTextureProvider{

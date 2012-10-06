@@ -4,17 +4,14 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.nio.ByteBuffer;
 
-import shadowcraft.ShadowCraft;
 import shadowcraft.ShadowCraftShadow;
 import shadowcraft.shadow.tileentity.TileEntityShadowCatcher;
 import shadowcraft.shadow.tileentity.TileEntityShadowRefinery;
 
-import buildcraft.api.liquids.LiquidManager;
 import buildcraft.api.liquids.LiquidStack;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.NetworkManager;
-import net.minecraft.src.Packet132TileEntityData;
 import net.minecraft.src.Packet250CustomPayload;
 import net.minecraft.src.TileEntity;
 import cpw.mods.fml.common.network.IPacketHandler;
