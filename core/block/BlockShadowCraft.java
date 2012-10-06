@@ -1,4 +1,4 @@
-package shadowcraft.shadow.block;
+package shadowcraft.core.block;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.Material;
