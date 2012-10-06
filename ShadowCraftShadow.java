@@ -19,6 +19,7 @@ import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
 import shadowcraft.core.block.BlockShadowCraft;
 import shadowcraft.core.item.ItemShadowCraft;
+import shadowcraft.light.block.BlockLightTrapper;
 import shadowcraft.shadow.ClientProxy;
 import shadowcraft.shadow.ClientTickHandler;
 import shadowcraft.shadow.ModelShadowCube;
@@ -124,12 +125,6 @@ public class ShadowCraftShadow {
 	
 	@Init
 	public void load(FMLInitializationEvent event){
-		if(!Loader.isModLoaded("ShadowCraft Core")){
-			scLog.severe("All ShadowCraft mods must be installed");
-		}
-		
-		clientProxy.preLoadTextures();
-		
 		addBlocks();
 		
 		addItems();
@@ -185,11 +180,11 @@ public class ShadowCraftShadow {
 		GameRegistry.registerBlock(shadowCatcher);
 		LanguageRegistry.addName(shadowCatcher, "Shadow Catcher");
 		
-		liquidShadowMoving = new BlockFlowingShadow(liquidShadowMovingID, Material.water).setHardness(100.0F).setLightOpacity(3).setBlockName("liquidshadow");
+		liquidShadowMoving = new BlockFlowingShadow(liquidShadowMovingID, Material.water).setHardness(100.0F).setLightOpacity(3).setBlockName("liquidShadowMoving");
 		GameRegistry.registerBlock(liquidShadowMoving);
 		LanguageRegistry.addName(liquidShadowMoving, "Liquid Shadow");
 		
-		liquidShadowStill = new BlockStillShadow(liquidShadowStillID, Material.water).setHardness(100.0F).setLightOpacity(3).setBlockName("liquidshadow");
+		liquidShadowStill = new BlockStillShadow(liquidShadowStillID, Material.water).setHardness(100.0F).setLightOpacity(3).setBlockName("liquidShadowStill");
 		GameRegistry.registerBlock(liquidShadowStill);
 		LanguageRegistry.addName(liquidShadowStill, "Liquid Shadow");
 		
@@ -202,7 +197,7 @@ public class ShadowCraftShadow {
 		LanguageRegistry.addName(darkOre, "Dark Ore");
 		
 		shadowBlock = new BlockShadowCraft(shadowBlockID, Material.rock).setHardness(10.0F).setResistance(500.0F).setBlockName("shadowBlock");
-		shadowBlock.blockIndexInTexture = 16 + 6;
+		shadowBlock.blockIndexInTexture = 5;
 		GameRegistry.registerBlock(shadowBlock);
 		LanguageRegistry.addName(shadowBlock, "Cryptic Block");
 	}

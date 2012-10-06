@@ -1,4 +1,4 @@
-package shadowcraft.shadow.block;
+package shadowcraft.core.block;
 
 import buildcraft.api.liquids.ILiquid;
 import cpw.mods.fml.common.Side;

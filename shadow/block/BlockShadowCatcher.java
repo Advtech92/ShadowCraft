@@ -18,7 +18,7 @@ public class BlockShadowCatcher extends BlockContainer{
 		super(par1, Material.rock);
 		blockIndexInTexture = 5;
 		setBlockName("shadowCatcher");
-		setCreativeTab(CreativeTabs.tabMisc);
+		setCreativeTab(CreativeTabs.tabDecorations);
 	}
 	
 	@Override
@@ -47,22 +47,10 @@ public class BlockShadowCatcher extends BlockContainer{
 	@Override
 	public int getBlockTextureFromSide(int side){
 		switch(side){
-			case 0:
-				return 7;
 			case 1:
 				return 6;
 		}
 		return blockIndexInTexture;
-	}
-    
-	
-	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int i, float f, float g, float t) {
-		TileEntity te = world.getBlockTileEntity(x, y, z);
-		if(te instanceof TileEntityShadowCatcher){
-			System.out.println(((TileEntityShadowCatcher) te).shadows);
-		}
-		return true;
 	}
 
 	@Override

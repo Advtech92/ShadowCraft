@@ -31,14 +31,17 @@ public class ShadowCraft {
 	
 	
 	@SidedProxy(clientSide = "shadowcraft.core.ClientProxy", serverSide = "shadowcraft.core.CommonProxy")
-    public static ClientProxy proxy;
+    public static ClientProxy clientProxy;
 	private GuiHandler guiHandler = new GuiHandler();
 	
 	@Init
 	public void load(FMLInitializationEvent event){
-		if(!Loader.isModLoaded("ShadowCraft Shadow")){
+		if(!(Loader.isModLoaded("ShadowCraft Shadow") || Loader.isModLoaded("ShadowCraft Light"))){
 			scLog.severe("All ShadowCraft mods must be installed");
 		}
+		
+		clientProxy.preLoadTextures();
+		
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 
 		GameRegistry.registerWorldGenerator(new WorldGeneratorShadowCraft());

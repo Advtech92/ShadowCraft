@@ -1,4 +1,4 @@
-package shadowcraft.shadow.block;
+package shadowcraft.light.block;
 
 import java.util.Random;
 
@@ -10,9 +10,9 @@ import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
 
-public class BlockStillShadow extends BlockLiquidBase
+public class BlockStillLight extends BlockLiquidBase
 {
-    public BlockStillShadow(int par1, Material par2Material)
+    public BlockStillLight(int par1, Material par2Material)
     {
         super(par1, par2Material);
         this.setTickRandomly(false);
@@ -21,6 +21,8 @@ public class BlockStillShadow extends BlockLiquidBase
         {
             this.setTickRandomly(true);
         }
+        
+        blockIndexInTexture = 16 * 2;
     }
 
     @Override
