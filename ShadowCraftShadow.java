@@ -242,7 +242,7 @@ public class ShadowCraftShadow {
 	}
 	
 	public void addRecipes(){
-		GameRegistry.addRecipe(new ItemStack(obsidianBucket, 1), new Object[] {"# #", " # ", '#', Block.obsidian});
+		GameRegistry.addRecipe(new ItemStack(obsidianBucket, 1), new Object[] {"# #", "# #", "###", '#', Block.obsidian});
 		GameRegistry.addRecipe(new ItemStack(shadowHelmet, 1), new Object[] {"###", "# #", '#', shadowIngot});
 		GameRegistry.addRecipe(new ItemStack(shadowChestplate, 1), new Object[] {"# #", "###", "###", '#', shadowIngot});
 		GameRegistry.addRecipe(new ItemStack(shadowLeggings, 1), new Object[] {"###", "# #", "# #", '#', shadowIngot});

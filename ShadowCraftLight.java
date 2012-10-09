@@ -185,4 +185,18 @@ public class ShadowCraftLight {
         LanguageRegistry.addName(lightAxe, "Carbon Crusher");
 	}
 	
+	public void addRecipes(){
+		GameRegistry.addRecipe(new ItemStack(glassBucket, 1), new Object[] {"# #", "# #", "###", '#', Block.obsidian});
+		GameRegistry.addRecipe(new ItemStack(lightHelmet, 1), new Object[] {"###", "# #", '#', lightIngot});
+		GameRegistry.addRecipe(new ItemStack(lightChestplate, 1), new Object[] {"# #", "###", "###", '#', lightIngot});
+		GameRegistry.addRecipe(new ItemStack(lightLeggings, 1), new Object[] {"###", "# #", "# #", '#', lightIngot});
+		GameRegistry.addRecipe(new ItemStack(lightBoots, 1), new Object[] {"# #", "# #", '#', lightIngot});
+		GameRegistry.addRecipe(new ItemStack(lightSword, 1), new Object[] {" # ", " # ", " O ", '#', lightIngot, 'O', Block.obsidian});
+		GameRegistry.addRecipe(new ItemStack(lightShovel, 1), new Object[] {"#", "O", "O", '#', lightIngot, 'O', Block.obsidian});
+		GameRegistry.addRecipe(new ItemStack(lightPickaxe, 1), new Object[] {"###", " O ", " O ", '#', lightIngot, 'O', Block.obsidian});
+		GameRegistry.addRecipe(new ItemStack(lightAxe, 1), new Object[] {"##", "#O", " O", '#', lightIngot, 'O', Block.obsidian});
+		//GameRegistry.addRecipe(new ItemStack(lightBlock, 1), new Object[] {"##", "##", '#', lightCrystal});
+		//GameRegistry.addRecipe(new ItemStack(lightCatcher, 1), new Object[] {"###", "#L#", "###", '#', lightBlock, 'L', Item.bucketLava});
+	}
+	
 }
