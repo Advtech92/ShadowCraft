@@ -12,6 +12,7 @@ import shadowcraft.light.block.BlockFlowingLight;
 import shadowcraft.light.block.BlockLightTrapper;
 import shadowcraft.light.block.BlockStillLight;
 import shadowcraft.light.item.ItemLightBucket;
+import shadowcraft.light.tileentity.TileEntityLightTrapper;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
@@ -73,6 +74,8 @@ public class ShadowCraftLight {
 	public static int lightAxeID;
 	public static int lightCrystalID;
 	
+	public static int lightTrapperOutputMultiplier;
+	
 	public static Logger scLog = Logger.getLogger("ShadowCraft|Light");
 	
 	public static EnumArmorMaterial lightArmorMaterial = EnumHelper.addArmorMaterial("Light", 55, new int[]{4, 7, 5, 4}, 20);
@@ -98,6 +101,8 @@ public class ShadowCraftLight {
 		
 		addItems();
 		
+		GameRegistry.registerTileEntity(TileEntityLightTrapper.class, "tileEntityLightTrapper");
+		
 		LiquidManager.liquids.add(new LiquidData(new LiquidStack(liquidLightStill, LiquidManager.BUCKET_VOLUME), new LiquidStack(liquidLightMoving, LiquidManager.BUCKET_VOLUME), new ItemStack(lightBucket), new ItemStack(glassBucket)));
 	}
 	
@@ -121,6 +126,9 @@ public class ShadowCraftLight {
 		lightAxeID = config.get(Configuration.CATEGORY_ITEM, "Light Axe", 330).getInt(330);
 		lightCrystalID = config.get(Configuration.CATEGORY_ITEM, "Glowing Crystal", 331).getInt(331);
 		
+		config.get(Configuration.CATEGORY_GENERAL, "Shadow Catcher Output", 1).comment = "Amount of liquid produced by light trapper. 1 = normal, 2 = 2x normal, 3 = 3x normal, etc.";
+		lightTrapperOutputMultiplier = config.get(Configuration.CATEGORY_GENERAL, "Light Trapper Output", 1).getInt(1);
+
 		config.save();
 	}
 	

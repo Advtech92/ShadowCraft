@@ -1,12 +1,8 @@
 package shadowcraft.light.block;
 
-import java.util.Random;
-
-import shadowcraft.shadow.tileentity.TileEntityShadowCatcher;
-
+import shadowcraft.light.tileentity.TileEntityLightTrapper;
 import net.minecraft.src.BlockContainer;
 import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.Material;
 import net.minecraft.src.TileEntity;
 import net.minecraft.src.World;
@@ -36,7 +32,7 @@ public class BlockLightTrapper extends BlockContainer{
 
 	@Override
 	public TileEntity createNewTileEntity(World var1) {
-		return null;
+		return new TileEntityLightTrapper();
 	}
 	
 }
