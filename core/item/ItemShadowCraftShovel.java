@@ -1,13 +1,13 @@
-package shadowcraft.shadow.item;
+package shadowcraft.core.item;
 
 import net.minecraft.src.EnumRarity;
 import net.minecraft.src.EnumToolMaterial;
-import net.minecraft.src.ItemAxe;
+import net.minecraft.src.ItemSpade;
 import net.minecraft.src.ItemStack;
 
-public class ItemShadowAxe extends ItemAxe{
+public class ItemShadowCraftShovel extends ItemSpade{
 
-	public ItemShadowAxe(int itemID, EnumToolMaterial toolMaterial) {
+	public ItemShadowCraftShovel(int itemID, EnumToolMaterial toolMaterial) {
 		super(itemID, toolMaterial);
 	}
 	
@@ -16,5 +16,5 @@ public class ItemShadowAxe extends ItemAxe{
     {
         return EnumRarity.rare;
     }
-	
+
 }

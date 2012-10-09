@@ -6,16 +6,23 @@ import buildcraft.api.liquids.LiquidData;
 import buildcraft.api.liquids.LiquidManager;
 import buildcraft.api.liquids.LiquidStack;
 
+import shadowcraft.core.item.ItemShadowCraft;
+import shadowcraft.core.item.ItemShadowCraftArmor;
 import shadowcraft.light.block.BlockFlowingLight;
 import shadowcraft.light.block.BlockLightTrapper;
 import shadowcraft.light.block.BlockStillLight;
 import shadowcraft.light.item.ItemLightBucket;
 
 import net.minecraft.src.Block;
+import net.minecraft.src.CreativeTabs;
+import net.minecraft.src.EnumArmorMaterial;
+import net.minecraft.src.EnumToolMaterial;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
+import net.minecraft.src.ModLoader;
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.EnumHelper;
 
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -38,6 +45,16 @@ public class ShadowCraftLight {
 	
 	public static Item glassBucket;
 	public static Item lightBucket;
+	public static Item lightIngot;
+	public static Item lightHelmet;
+	public static Item lightChestplate;
+	public static Item lightLeggings;
+	public static Item lightBoots;
+	public static Item lightSword;
+	public static Item lightShovel;
+	public static Item lightPickaxe;
+	public static Item lightAxe;
+	public static Item lightCrystal;
 	
 	public static int lightTrapperID;
 	public static int liquidLightMovingID;
@@ -45,8 +62,24 @@ public class ShadowCraftLight {
 	
 	public static int glassBucketID;
 	public static int lightBucketID;
+	public static int lightIngotID;
+	public static int lightHelmetID;
+	public static int lightChestplateID;
+	public static int lightLeggingsID;
+	public static int lightBootsID;
+	public static int lightSwordID;
+	public static int lightShovelID;
+	public static int lightPickaxeID;
+	public static int lightAxeID;
+	public static int lightCrystalID;
 	
 	public static Logger scLog = Logger.getLogger("ShadowCraft|Light");
+	
+	public static EnumArmorMaterial lightArmorMaterial = EnumHelper.addArmorMaterial("Light", 55, new int[]{4, 7, 5, 4}, 20);
+	public static EnumToolMaterial shadowToolMaterial = EnumHelper.addToolMaterial("Light", 3, 5000, 8.0F, 2, 20);
+
+	public static String lightArmorTex1 = "/armor/light_1.png";
+	public static String lightArmorTex2 = "/armor/light_2.png";
 	
 	@Instance("ShadowCraft|Light")
 	public static ShadowCraftLight instance = new ShadowCraftLight();
@@ -76,7 +109,17 @@ public class ShadowCraftLight {
 		liquidLightStillID = config.get(Configuration.CATEGORY_BLOCK, "Still Liquid Light", 182).getInt(182);
 		
 		glassBucketID = config.get(Configuration.CATEGORY_ITEM, "Glass Bucket", 220).getInt(220);
-		glassBucketID = config.get(Configuration.CATEGORY_ITEM, "Light Bucket", 221).getInt(221);
+		lightBucketID = config.get(Configuration.CATEGORY_ITEM, "Light Bucket", 221).getInt(221);
+		lightIngotID = config.get(Configuration.CATEGORY_ITEM, "Light Ingot", 222).getInt(222);
+		lightHelmetID = config.get(Configuration.CATEGORY_ITEM, "Light Helmet", 223).getInt(223);
+		lightChestplateID = config.get(Configuration.CATEGORY_ITEM, "Light Chestplate", 224).getInt(224);
+		lightLeggingsID = config.get(Configuration.CATEGORY_ITEM, "Light Leggings", 225).getInt(225);
+		lightBootsID = config.get(Configuration.CATEGORY_ITEM, "Light Boots", 226).getInt(226);
+		lightSwordID = config.get(Configuration.CATEGORY_ITEM, "Light Sword", 227).getInt(227);
+		lightShovelID = config.get(Configuration.CATEGORY_ITEM, "Light Shovel", 228).getInt(228);
+		lightPickaxeID = config.get(Configuration.CATEGORY_ITEM, "Light Pickaxe", 229).getInt(229);
+		lightAxeID = config.get(Configuration.CATEGORY_ITEM, "Light Axe", 330).getInt(330);
+		lightCrystalID = config.get(Configuration.CATEGORY_ITEM, "Glowing Crystal", 331).getInt(331);
 		
 		config.save();
 	}
@@ -101,6 +144,21 @@ public class ShadowCraftLight {
 		
 		lightBucket = new ItemLightBucket(lightBucketID, liquidLightMovingID).setIconIndex(16 + 1).setItemName("lightBucket");
 		LanguageRegistry.addName(lightBucket, "Light Bucket");
+		
+		lightIngot = new ItemShadowCraft(lightIngotID).setIconIndex(16 + 3).setCreativeTab(CreativeTabs.tabMaterials).setItemName("lightIngot");
+		LanguageRegistry.addName(lightIngot, "Light Ingot");
+		
+		lightHelmet = new ItemShadowCraftArmor(lightHelmetID, lightArmorMaterial, ModLoader.addArmor("Light"), 0, lightArmorTex1, lightArmorTex2).setIconIndex(14).setItemName("lightHelmet");
+		LanguageRegistry.addName(lightHelmet, "Light Helmet");
+		
+		lightChestplate = new ItemShadowCraftArmor(lightChestplateID, lightArmorMaterial, ModLoader.addArmor("Light"), 1, lightArmorTex1, lightArmorTex2).setIconIndex(16 + 14).setItemName("lightChestplate");
+		LanguageRegistry.addName(lightChestplate, "Light Chestplate");
+		
+		lightLeggings = new ItemShadowCraftArmor(lightLeggingsID, lightArmorMaterial, ModLoader.addArmor("Light"), 2, lightArmorTex1, lightArmorTex2).setIconIndex((16 * 2) + 14).setItemName("lightLeggings");
+		LanguageRegistry.addName(lightLeggings, "Light Leggings");
+		
+		lightBoots = new ItemShadowCraftArmor(lightBootsID, lightArmorMaterial, ModLoader.addArmor("Light"), 3, lightArmorTex1, lightArmorTex2).setIconIndex((16 * 3) + 14).setItemName("lightBoots");
+		LanguageRegistry.addName(lightBoots, "Light Boots");
 	}
 	
 }

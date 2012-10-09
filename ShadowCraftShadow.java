@@ -18,7 +18,12 @@ import net.minecraft.src.TileEntityRenderer;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
 import shadowcraft.core.block.BlockShadowCraft;
+import shadowcraft.core.item.ItemShadowCraftArmor;
+import shadowcraft.core.item.ItemShadowCraftAxe;
 import shadowcraft.core.item.ItemShadowCraft;
+import shadowcraft.core.item.ItemShadowCraftPickaxe;
+import shadowcraft.core.item.ItemShadowCraftShovel;
+import shadowcraft.core.item.ItemShadowCraftSword;
 import shadowcraft.light.block.BlockLightTrapper;
 import shadowcraft.shadow.ClientProxy;
 import shadowcraft.shadow.ClientTickHandler;
@@ -29,13 +34,8 @@ import shadowcraft.shadow.block.BlockFlowingShadow;
 import shadowcraft.shadow.block.BlockShadowCatcher;
 import shadowcraft.shadow.block.BlockShadowRefinery;
 import shadowcraft.shadow.block.BlockStillShadow;
-import shadowcraft.shadow.item.ItemShadowArmor;
-import shadowcraft.shadow.item.ItemShadowAxe;
 import shadowcraft.shadow.item.ItemShadowBucket;
 import shadowcraft.shadow.item.ItemShadowIngot;
-import shadowcraft.shadow.item.ItemShadowPickaxe;
-import shadowcraft.shadow.item.ItemShadowShovel;
-import shadowcraft.shadow.item.ItemShadowSword;
 import shadowcraft.shadow.tileentity.TileEntityShadowCatcher;
 import shadowcraft.shadow.tileentity.TileEntityShadowRefinery;
 import cpw.mods.fml.common.FMLLog;
@@ -105,6 +105,9 @@ public class ShadowCraftShadow {
 	public static int shadowArmorParticles;
 	
 	public static int shadowCatcherOutputMultiplier;
+	
+	public static String shadowArmorTex1 = "/armor/shadow_1.png";
+	public static String shadowArmorTex2 = "/armor/shadow_2.png";
 	
 	
 	public static EnumArmorMaterial shadowArmorMaterial = EnumHelper.addArmorMaterial("Shadow", 35, new int[]{5, 10, 8, 7}, 20);
@@ -212,31 +215,31 @@ public class ShadowCraftShadow {
         shadowIngot = new ItemShadowIngot(146).setIconIndex(3).setItemName("shadowIngot");
         LanguageRegistry.addName(shadowIngot, "Shadow Ingot");
         
-        shadowHelmet = new ItemShadowArmor(shadowHelmetID, shadowArmorMaterial, ModLoader.addArmor("Shadow"), 0).setIconIndex(15).setItemName("shadowHelmet");
+        shadowHelmet = new ItemShadowCraftArmor(shadowHelmetID, shadowArmorMaterial, ModLoader.addArmor("Shadow"), 0, shadowArmorTex1, shadowArmorTex2).setIconIndex(15).setItemName("shadowHelmet");
         LanguageRegistry.addName(shadowHelmet, "Shadow Helmet");
         
-        shadowChestplate = new ItemShadowArmor(shadowChestplateID, shadowArmorMaterial, ModLoader.addArmor("Shadow"), 1).setIconIndex((16 * 1) + 15).setItemName("shadowChestplate");
+        shadowChestplate = new ItemShadowCraftArmor(shadowChestplateID, shadowArmorMaterial, ModLoader.addArmor("Shadow"), 1, shadowArmorTex1, shadowArmorTex2).setIconIndex((16 * 1) + 15).setItemName("shadowChestplate");
         LanguageRegistry.addName(shadowChestplate, "Shadow Chestplate");
         
-        shadowLeggings = new ItemShadowArmor(shadowLeggingsID, shadowArmorMaterial, ModLoader.addArmor("Shadow"), 2).setIconIndex((16 * 2) + 15).setItemName("shadowLeggings");
+        shadowLeggings = new ItemShadowCraftArmor(shadowLeggingsID, shadowArmorMaterial, ModLoader.addArmor("Shadow"), 2, shadowArmorTex1, shadowArmorTex2).setIconIndex((16 * 2) + 15).setItemName("shadowLeggings");
         LanguageRegistry.addName(shadowLeggings, "Shadow Leggings");
         
-        shadowBoots = new ItemShadowArmor(shadowBootsID, shadowArmorMaterial, ModLoader.addArmor("Shadow"), 3).setIconIndex((16 * 3) + 15).setItemName("shadowBoots");
+        shadowBoots = new ItemShadowCraftArmor(shadowBootsID, shadowArmorMaterial, ModLoader.addArmor("Shadow"), 3, shadowArmorTex1, shadowArmorTex2).setIconIndex((16 * 3) + 15).setItemName("shadowBoots");
         LanguageRegistry.addName(shadowBoots, "Shadow Boots");
         
-        shadowSword = new ItemShadowSword(shadowSwordID, shadowToolMaterial).setIconIndex((16 * 4) + 15).setItemName("shadowSword");
+        shadowSword = new ItemShadowCraftSword(shadowSwordID, shadowToolMaterial).setIconIndex((16 * 4) + 15).setItemName("shadowSword");
         shadowSword.setTextureFile("/gui/scitemtex.png");
         LanguageRegistry.addName(shadowSword, "Death's Blade");
         
-        shadowShovel = new ItemShadowShovel(shadowShovelID, shadowToolMaterial).setIconIndex((16 * 5) + 15).setItemName("shadowShovel");
+        shadowShovel = new ItemShadowCraftShovel(shadowShovelID, shadowToolMaterial).setIconIndex((16 * 5) + 15).setItemName("shadowShovel");
         shadowShovel.setTextureFile("/gui/scitemtex.png");
         LanguageRegistry.addName(shadowShovel, "Dirt Destroyer");
         
-        shadowPickaxe = new ItemShadowPickaxe(shadowPickaxeID, shadowToolMaterial).setIconIndex((16 * 6) + 15).setItemName("shadowPickaxe");
+        shadowPickaxe = new ItemShadowCraftPickaxe(shadowPickaxeID, shadowToolMaterial).setIconIndex((16 * 6) + 15).setItemName("shadowPickaxe");
         shadowPickaxe.setTextureFile("/gui/scitemtex.png");
         LanguageRegistry.addName(shadowPickaxe, "Dark Nullifier");
         
-        shadowAxe = new ItemShadowAxe(shadowAxeID, shadowToolMaterial).setIconIndex((16 * 7) + 15).setItemName("shadowAxe");
+        shadowAxe = new ItemShadowCraftAxe(shadowAxeID, shadowToolMaterial).setIconIndex((16 * 7) + 15).setItemName("shadowAxe");
         shadowAxe.setTextureFile("/gui/scitemtex.png");
         LanguageRegistry.addName(shadowAxe, "Nature's Nightmare");
         

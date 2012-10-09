@@ -8,18 +8,14 @@ import cpw.mods.fml.common.asm.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ModelShadowCube extends ModelBase
 {
-    /** The chest lid in the chest's model. */
-    public ModelRenderer shadowCube = (new ModelRenderer(this, 0, 0)).setTextureSize(64, 64);
+    public ModelRenderer sc;
 
     public ModelShadowCube(){
-        shadowCube.addBox(0.0F, 0.0F, 0.0F, 10, 10, 10, 0.0F);
-        shadowCube.setTextureOffset(0, 0);
-        shadowCube.textureHeight = 64;
-        shadowCube.textureWidth = 64;
-        shadowCube.setRotationPoint(0.5F, 0.5F, 0.5F);
+    	sc = new ModelRenderer(this, 0, 0);
+    	sc.addBox(-4.0F, -4.0F, -4.0F, 8, 8, 8, 0);
     }
 
-    public void render(){
-        shadowCube.render(0.03F);
+    public void render(float i){
+        sc.render(i);
     }
 }
