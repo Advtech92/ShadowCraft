@@ -6,6 +6,7 @@ import buildcraft.api.liquids.LiquidData;
 import buildcraft.api.liquids.LiquidManager;
 import buildcraft.api.liquids.LiquidStack;
 
+import shadowcraft.core.block.BlockShadowCraft;
 import shadowcraft.core.item.ItemShadowCraft;
 import shadowcraft.core.item.ItemShadowCraftArmor;
 import shadowcraft.core.item.ItemShadowCraftAxe;
@@ -47,6 +48,9 @@ public class ShadowCraftLight {
 	public static Block lightTrapper;
 	public static Block liquidLightMoving;
 	public static Block liquidLightStill;
+	public static Block lightRefinery;
+	public static Block brightOre;
+	public static Block lightBlock;
 	
 	public static Item glassBucket;
 	public static Item lightBucket;
@@ -64,6 +68,9 @@ public class ShadowCraftLight {
 	public static int lightTrapperID;
 	public static int liquidLightMovingID;
 	public static int liquidLightStillID;
+	public static int lightRefineryID;
+	public static int brightOreID;
+	public static int lightBlockID;
 	
 	public static int glassBucketID;
 	public static int lightBucketID;
@@ -116,6 +123,9 @@ public class ShadowCraftLight {
 		lightTrapperID = config.get(Configuration.CATEGORY_BLOCK, "Light Trapper", 180).getInt(180);
 		liquidLightMovingID = config.get(Configuration.CATEGORY_BLOCK, "Flowing Liquid Light", 181).getInt(181);
 		liquidLightStillID = config.get(Configuration.CATEGORY_BLOCK, "Still Liquid Light", 182).getInt(182);
+		lightRefineryID = config.get(Configuration.CATEGORY_BLOCK, "Light Refinery", 183).getInt(183);
+		brightOreID = config.get(Configuration.CATEGORY_BLOCK, "Bright Ore", 184).getInt(184);
+		lightBlockID = config.get(Configuration.CATEGORY_BLOCK, "Gleaming Block", 185).getInt(185);
 		
 		glassBucketID = config.get(Configuration.CATEGORY_ITEM, "Glass Bucket", 220).getInt(220);
 		lightBucketID = config.get(Configuration.CATEGORY_ITEM, "Light Bucket", 221).getInt(221);
@@ -148,6 +158,11 @@ public class ShadowCraftLight {
 		liquidLightStill = new BlockStillLight(liquidLightStillID, Material.water).setHardness(100.0F).setLightOpacity(3).setBlockName("liquidLightStill");
 		GameRegistry.registerBlock(liquidLightStill);
 		LanguageRegistry.addName(liquidLightStill, "Still Liquid Light");
+		
+		lightBlock = new BlockShadowCraft(lightBlockID, Material.rock).setHardness(10.0F).setResistance(500.0F).setBlockName("lightBlock");
+		lightBlock.blockIndexInTexture = (16 * 2) + 5;
+		GameRegistry.registerBlock(lightBlock);
+		LanguageRegistry.addName(lightBlock, "Gleaming Block");
 	}
 	
 	public void addItems(){
@@ -183,6 +198,9 @@ public class ShadowCraftLight {
         
         lightAxe = new ItemShadowCraftAxe(lightAxeID, lightToolMaterial).setIconIndex((16 * 7) + 14).setItemName("lightAxe");
         LanguageRegistry.addName(lightAxe, "Carbon Crusher");
+        
+        lightCrystal = new ItemShadowCraft(lightCrystalID).setIconIndex(16 + 4).setItemName("lightCrystal").setCreativeTab(CreativeTabs.tabMaterials);
+        LanguageRegistry.addName(lightCrystal, "Radiant Crystal");
 	}
 	
 	public void addRecipes(){
