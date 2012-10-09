@@ -48,8 +48,7 @@ public class TileEntityLightTrapper extends TileEntity implements IMachine {
 	public void updateEntity(){
 		lightLevel = worldObj.getBlockLightValue(xCoord, yCoord + 1, zCoord);
 		boolean isCheatyBlockAbove = !worldObj.isAirBlock(xCoord, yCoord + 1, zCoord);
-		
-		if((lightLevel > 8) && (!isCheatyBlockAbove) && (!(light == 10000))){
+		if((lightLevel > 10) && (!isCheatyBlockAbove) && (!(light == 10000))){
 			light += 10;
 		}
 		if(light > 10000){

@@ -5,6 +5,7 @@ import java.io.DataInputStream;
 import java.nio.ByteBuffer;
 
 import shadowcraft.ShadowCraftShadow;
+import shadowcraft.light.tileentity.TileEntityLightTrapper;
 import shadowcraft.shadow.tileentity.TileEntityShadowCatcher;
 import shadowcraft.shadow.tileentity.TileEntityShadowRefinery;
 
@@ -32,6 +33,9 @@ public class ClientPacketHandler implements IPacketHandler{
 		TileEntity te = mc.theWorld.getBlockTileEntity(x, y, z);
 		if(te instanceof TileEntityShadowCatcher){
 			((TileEntityShadowCatcher) te).setShadows(i);
+		}
+		else if(te instanceof TileEntityLightTrapper){
+			((TileEntityLightTrapper) te).setLight(i);
 		}
 		else if(te instanceof TileEntityShadowRefinery){		
 			if(i == -1){
