@@ -8,6 +8,10 @@ import buildcraft.api.liquids.LiquidStack;
 
 import shadowcraft.core.item.ItemShadowCraft;
 import shadowcraft.core.item.ItemShadowCraftArmor;
+import shadowcraft.core.item.ItemShadowCraftAxe;
+import shadowcraft.core.item.ItemShadowCraftPickaxe;
+import shadowcraft.core.item.ItemShadowCraftShovel;
+import shadowcraft.core.item.ItemShadowCraftSword;
 import shadowcraft.light.block.BlockFlowingLight;
 import shadowcraft.light.block.BlockLightTrapper;
 import shadowcraft.light.block.BlockStillLight;
@@ -79,7 +83,7 @@ public class ShadowCraftLight {
 	public static Logger scLog = Logger.getLogger("ShadowCraft|Light");
 	
 	public static EnumArmorMaterial lightArmorMaterial = EnumHelper.addArmorMaterial("Light", 55, new int[]{4, 7, 5, 4}, 20);
-	public static EnumToolMaterial shadowToolMaterial = EnumHelper.addToolMaterial("Light", 3, 5000, 8.0F, 2, 20);
+	public static EnumToolMaterial lightToolMaterial = EnumHelper.addToolMaterial("Light", 3, 5000, 8.0F, 2, 20);
 
 	public static String lightArmorTex1 = "/armor/light_1.png";
 	public static String lightArmorTex2 = "/armor/light_2.png";
@@ -167,6 +171,18 @@ public class ShadowCraftLight {
 		
 		lightBoots = new ItemShadowCraftArmor(lightBootsID, lightArmorMaterial, ModLoader.addArmor("Light"), 3, lightArmorTex1, lightArmorTex2).setIconIndex((16 * 3) + 14).setItemName("lightBoots");
 		LanguageRegistry.addName(lightBoots, "Light Boots");
+		
+        lightSword = new ItemShadowCraftSword(lightSwordID, lightToolMaterial).setIconIndex((16 * 4) + 14).setItemName("lightSword");
+        LanguageRegistry.addName(lightSword, "Glowing Rapier");
+        
+        lightShovel = new ItemShadowCraftShovel(lightShovelID, lightToolMaterial).setIconIndex((16 * 5) + 14).setItemName("lightShovel");
+        LanguageRegistry.addName(lightShovel, "Gravel Annihilator");
+        
+        lightPickaxe = new ItemShadowCraftPickaxe(lightPickaxeID, lightToolMaterial).setIconIndex((16 * 6) + 14).setItemName("lightPickaxe");
+        LanguageRegistry.addName(lightPickaxe, "Land Leveler");
+        
+        lightAxe = new ItemShadowCraftAxe(lightAxeID, lightToolMaterial).setIconIndex((16 * 7) + 14).setItemName("lightAxe");
+        LanguageRegistry.addName(lightAxe, "Carbon Crusher");
 	}
 	
 }

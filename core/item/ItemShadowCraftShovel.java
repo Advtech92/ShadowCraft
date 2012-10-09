@@ -1,5 +1,6 @@
 package shadowcraft.core.item;
 
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EnumRarity;
 import net.minecraft.src.EnumToolMaterial;
 import net.minecraft.src.ItemSpade;
@@ -16,5 +17,10 @@ public class ItemShadowCraftShovel extends ItemSpade{
     {
         return EnumRarity.rare;
     }
+	
+	@Override
+	public String getTextureFile(){
+		return "/gui/scitemtex.png";
+	}
 
 }

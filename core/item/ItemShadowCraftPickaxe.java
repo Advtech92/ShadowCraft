@@ -1,5 +1,6 @@
 package shadowcraft.core.item;
 
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EnumRarity;
 import net.minecraft.src.EnumToolMaterial;
 import net.minecraft.src.ItemPickaxe;
@@ -16,5 +17,10 @@ public class ItemShadowCraftPickaxe extends ItemPickaxe{
     {
         return EnumRarity.rare;
     }
+	
+	@Override
+	public String getTextureFile(){
+		return "/gui/scitemtex.png";
+	}
 	
 }

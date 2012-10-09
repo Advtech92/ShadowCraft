@@ -226,19 +226,15 @@ public class ShadowCraftShadow {
         LanguageRegistry.addName(shadowBoots, "Shadow Boots");
         
         shadowSword = new ItemShadowCraftSword(shadowSwordID, shadowToolMaterial).setIconIndex((16 * 4) + 15).setItemName("shadowSword");
-        shadowSword.setTextureFile("/gui/scitemtex.png");
         LanguageRegistry.addName(shadowSword, "Death's Blade");
         
         shadowShovel = new ItemShadowCraftShovel(shadowShovelID, shadowToolMaterial).setIconIndex((16 * 5) + 15).setItemName("shadowShovel");
-        shadowShovel.setTextureFile("/gui/scitemtex.png");
         LanguageRegistry.addName(shadowShovel, "Dirt Destroyer");
         
         shadowPickaxe = new ItemShadowCraftPickaxe(shadowPickaxeID, shadowToolMaterial).setIconIndex((16 * 6) + 15).setItemName("shadowPickaxe");
-        shadowPickaxe.setTextureFile("/gui/scitemtex.png");
         LanguageRegistry.addName(shadowPickaxe, "Dark Nullifier");
         
         shadowAxe = new ItemShadowCraftAxe(shadowAxeID, shadowToolMaterial).setIconIndex((16 * 7) + 15).setItemName("shadowAxe");
-        shadowAxe.setTextureFile("/gui/scitemtex.png");
         LanguageRegistry.addName(shadowAxe, "Nature's Nightmare");
         
         shadowCrystal = new ItemShadowCraft(shadowCrystalID).setIconIndex(4).setItemName("shadowCrystal").setCreativeTab(CreativeTabs.tabMaterials);
