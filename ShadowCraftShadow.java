@@ -17,6 +17,7 @@ import net.minecraft.src.ModLoader;
 import net.minecraft.src.TileEntityRenderer;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
+import shadowcraft.core.ModelRefineryCube;
 import shadowcraft.core.block.BlockShadowCraft;
 import shadowcraft.core.item.ItemShadowCraftArmor;
 import shadowcraft.core.item.ItemShadowCraftAxe;
@@ -26,7 +27,6 @@ import shadowcraft.core.item.ItemShadowCraftShovel;
 import shadowcraft.core.item.ItemShadowCraftSword;
 import shadowcraft.shadow.ClientProxy;
 import shadowcraft.shadow.ClientTickHandler;
-import shadowcraft.shadow.ModelShadowCube;
 import shadowcraft.shadow.RenderShadowCube;
 import shadowcraft.shadow.block.BlockDarkOre;
 import shadowcraft.shadow.block.BlockFlowingShadow;
@@ -135,7 +135,7 @@ public class ShadowCraftShadow {
 		GameRegistry.registerTileEntity(TileEntityShadowCatcher.class, "tileEntityShadowCatcher");
 		GameRegistry.registerTileEntity(TileEntityShadowRefinery.class, "tileEntityShadowRefinery");
 		
-		TileEntityRenderer.instance.specialRendererMap.put(TileEntityShadowRefinery.class, new RenderShadowCube(new ModelShadowCube()));
+		TileEntityRenderer.instance.specialRendererMap.put(TileEntityShadowRefinery.class, new RenderShadowCube(new ModelRefineryCube()));
 		
 		LiquidManager.liquids.add(new LiquidData(new LiquidStack(liquidShadowStill, LiquidManager.BUCKET_VOLUME), new LiquidStack(liquidShadowMoving, LiquidManager.BUCKET_VOLUME), new ItemStack(shadowBucket), new ItemStack(obsidianBucket)));
 

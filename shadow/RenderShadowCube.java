@@ -2,6 +2,7 @@ package shadowcraft.shadow;
 
 import org.lwjgl.opengl.GL11;
 
+import shadowcraft.core.ModelRefineryCube;
 import shadowcraft.shadow.tileentity.TileEntityShadowRefinery;
 
 import cpw.mods.fml.common.Side;
@@ -14,18 +15,18 @@ import net.minecraftforge.client.ForgeHooksClient;
 @SideOnly(Side.CLIENT)
 public class RenderShadowCube extends TileEntitySpecialRenderer{
 	
-	private ModelShadowCube modelShadowCube;
+	private ModelRefineryCube modelRefineryCube;
 	
-	public RenderShadowCube(ModelShadowCube modelShadowCubeArg){
-		modelShadowCube = modelShadowCubeArg;
+	public RenderShadowCube(ModelRefineryCube modelRefineryCubeArg){
+		modelRefineryCube = modelRefineryCubeArg;
 	}
 	
 	public void renderShadowCubeAt(TileEntityShadowRefinery tileEntity, double x, double y, double z, float f){
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float)x + 0.5F, (float)y + 1F, (float)z + 0.5F);
-		ForgeHooksClient.bindTexture("/item/default.png", 0);
+		ForgeHooksClient.bindTexture("/item/refinerycube.png", 0);
 		GL11.glRotatef(tileEntity.cubeRotation, 1.0F, 1.0F, 1.0F);
-		this.modelShadowCube.render(0.03F);
+		this.modelRefineryCube.render(0.03F);
 		GL11.glPopMatrix();
 	}
 	
