@@ -19,33 +19,30 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = "ShadowCraft|Core", name = "ShadowCraft Core", version = "0.0")
-@NetworkMod(clientSideRequired=true, serverSideRequired=false,
-clientPacketHandlerSpec = @SidedPacketHandler(channels = {"ShadowCraft"}, packetHandler = ClientPacketHandler.class),
-serverPacketHandlerSpec = @SidedPacketHandler(channels = {"ShadowCraft"}, packetHandler = ServerPacketHandler.class))
-public class ShadowCraft {
-	
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, clientPacketHandlerSpec = @SidedPacketHandler(channels = { "ShadowCraft" }, packetHandler = ClientPacketHandler.class), serverPacketHandlerSpec = @SidedPacketHandler(channels = { "ShadowCraft" }, packetHandler = ServerPacketHandler.class))
+public class ShadowCraft{
+
 	@Instance("ShadowCraft|Core")
 	public static ShadowCraft instance = new ShadowCraft();
-	
+
 	public static Logger scLog = Logger.getLogger("ShadowCraft");
-	
-	
+
 	@SidedProxy(clientSide = "shadowcraft.core.ClientProxy", serverSide = "shadowcraft.core.CommonProxy")
-    public static ClientProxy clientProxy;
-	private GuiHandler guiHandler = new GuiHandler();
-	
+	public static ClientProxy clientProxy;
+	private final GuiHandler guiHandler = new GuiHandler();
+
 	@Init
-	public void load(FMLInitializationEvent event){
-		if(!(Loader.isModLoaded("ShadowCraft Shadow") || Loader.isModLoaded("ShadowCraft Light"))){
+	public void load(final FMLInitializationEvent event){
+		if (!(Loader.isModLoaded("ShadowCraft Shadow") || Loader.isModLoaded("ShadowCraft Light"))) {
 			scLog.severe("All ShadowCraft mods must be installed");
 		}
-		
+
 		clientProxy.preLoadTextures();
-		
+
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 
 		GameRegistry.registerWorldGenerator(new WorldGeneratorShadowCraft());
-		
+
 	}
 
 }

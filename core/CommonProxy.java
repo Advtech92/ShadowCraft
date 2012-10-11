@@ -1,5 +1,5 @@
 package shadowcraft.core;
 
-public class CommonProxy {
+public class CommonProxy{
 
 }

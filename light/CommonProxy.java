@@ -1,5 +1,5 @@
 package shadowcraft.light;
 
-public class CommonProxy {
+public class CommonProxy{
 
 }

@@ -5,15 +5,14 @@ import net.minecraft.src.Item;
 
 public class ItemShadowIngot extends Item{
 
-	public ItemShadowIngot(int itemID) {
+	public ItemShadowIngot(final int itemID){
 		super(itemID);
 		this.setCreativeTab(CreativeTabs.tabMaterials);
 	}
 
-    @Override
-    public String getTextureFile()
-    {
-            return "/gui/scitemtex.png";
-    }
-    
+	@Override
+	public String getTextureFile(){
+		return "/gui/scitemtex.png";
+	}
+
 }
