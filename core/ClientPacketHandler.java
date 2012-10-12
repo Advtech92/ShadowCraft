@@ -8,7 +8,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.src.NetworkManager;
 import net.minecraft.src.Packet250CustomPayload;
 import net.minecraft.src.TileEntity;
+import shadowcraft.ShadowCraftLight;
 import shadowcraft.ShadowCraftShadow;
+import shadowcraft.light.tileentity.TileEntityLightRefinery;
 import shadowcraft.light.tileentity.TileEntityLightTrapper;
 import shadowcraft.shadow.tileentity.TileEntityShadowCatcher;
 import shadowcraft.shadow.tileentity.TileEntityShadowRefinery;
@@ -38,6 +40,12 @@ public class ClientPacketHandler implements IPacketHandler{
 				((TileEntityShadowRefinery) te).tank.setLiquid(new LiquidStack(ShadowCraftShadow.liquidShadowStill, 0));
 			} else {
 				((TileEntityShadowRefinery) te).tank.setLiquid(new LiquidStack(ShadowCraftShadow.liquidShadowStill, i));
+			}
+		} else if (te instanceof TileEntityLightRefinery) {
+			if (i == -1) {
+				((TileEntityLightRefinery) te).tank.setLiquid(new LiquidStack(ShadowCraftLight.liquidLightStill, 0));
+			} else {
+				((TileEntityLightRefinery) te).tank.setLiquid(new LiquidStack(ShadowCraftLight.liquidLightStill, i));
 			}
 		}
 	}

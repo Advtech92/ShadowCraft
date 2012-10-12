@@ -191,7 +191,8 @@ public class ShadowCraftShadow{
 		GameRegistry.registerBlock(liquidShadowStill);
 		LanguageRegistry.addName(liquidShadowStill, "Liquid Shadow");
 
-		shadowRefinery = new BlockShadowRefinery(shadowRefineryID).setHardness(5.0F).setResistance(2000.0F);
+		shadowRefinery = new BlockShadowRefinery(shadowRefineryID).setHardness(5.0F).setResistance(2000.0F)
+			.setBlockName("shadowRefinery");
 		GameRegistry.registerBlock(shadowRefinery);
 		LanguageRegistry.addName(shadowRefinery, "Shadow Refinery");
 

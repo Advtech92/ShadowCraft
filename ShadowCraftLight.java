@@ -20,9 +20,11 @@ import shadowcraft.core.item.ItemShadowCraftPickaxe;
 import shadowcraft.core.item.ItemShadowCraftShovel;
 import shadowcraft.core.item.ItemShadowCraftSword;
 import shadowcraft.light.block.BlockFlowingLight;
+import shadowcraft.light.block.BlockLightRefinery;
 import shadowcraft.light.block.BlockLightTrapper;
 import shadowcraft.light.block.BlockStillLight;
 import shadowcraft.light.item.ItemLightBucket;
+import shadowcraft.light.tileentity.TileEntityLightRefinery;
 import shadowcraft.light.tileentity.TileEntityLightTrapper;
 import buildcraft.api.liquids.LiquidData;
 import buildcraft.api.liquids.LiquidManager;
@@ -111,7 +113,8 @@ public class ShadowCraftLight{
 		addItems();
 
 		GameRegistry.registerTileEntity(TileEntityLightTrapper.class, "tileEntityLightTrapper");
-
+		GameRegistry.registerTileEntity(TileEntityLightRefinery.class, "tileEntityLightRefinery");
+		
 		LiquidManager.liquids.add(new LiquidData(new LiquidStack(liquidLightStill, LiquidManager.BUCKET_VOLUME),
 			new LiquidStack(liquidLightMoving, LiquidManager.BUCKET_VOLUME), new ItemStack(lightBucket), new ItemStack(
 				glassBucket)));
@@ -166,6 +169,11 @@ public class ShadowCraftLight{
 		lightBlock.blockIndexInTexture = (16 * 2) + 5;
 		GameRegistry.registerBlock(lightBlock);
 		LanguageRegistry.addName(lightBlock, "Gleaming Block");
+
+		lightRefinery = new BlockLightRefinery(lightRefineryID).setHardness(5.0F).setResistance(2000.0F)
+			.setBlockName("lightRefinery");
+		GameRegistry.registerBlock(lightRefinery);
+		LanguageRegistry.addName(lightRefinery, "Light Refinery");
 	}
 
 	public void addItems(){

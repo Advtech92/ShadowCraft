@@ -74,7 +74,7 @@ public class ClientTickHandler implements ITickHandler{
 				for (int i = 0; i < (ShadowCraftShadow.shadowArmorParticles * 10); ++i) {
 					double randomNo = (r.nextDouble() / 3) + 0.02;
 					final double randomNo2 = (r.nextDouble() * 0.5) + 0.3;
-					mc.theWorld.spawnParticle("smoke", mc.thePlayer.posX - (cosYaw * randomNo2), mc.thePlayer.posY
+					mc.theWorld.spawnParticle("smoke ", mc.thePlayer.posX - (cosYaw * randomNo2), mc.thePlayer.posY
 						+ randomNo, mc.thePlayer.posZ - (Math.sin(yaw) * randomNo2), 0.0D, 0.0D, 0.0D);
 					randomNo = (r.nextDouble() / 2) - 0.6;
 					mc.theWorld.spawnParticle("smoke", mc.thePlayer.posX - (cosYaw * randomNo2), mc.thePlayer.posY

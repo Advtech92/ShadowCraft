@@ -1,4 +1,4 @@
-package shadowcraft.shadow;
+package shadowcraft.light;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.GuiContainer;
@@ -9,34 +9,34 @@ import net.minecraftforge.client.ForgeHooksClient;
 
 import org.lwjgl.opengl.GL11;
 
-import shadowcraft.ShadowCraftShadow;
-import shadowcraft.shadow.tileentity.TileEntityShadowRefinery;
+import shadowcraft.ShadowCraftLight;
+import shadowcraft.light.tileentity.TileEntityLightRefinery;
 import buildcraft.api.liquids.ILiquidTank;
 import buildcraft.api.liquids.LiquidManager;
 import buildcraft.core.DefaultProps;
 
-public class GuiShadowRefinery extends GuiContainer{
+public class GuiLightRefinery extends GuiContainer{
 
-	public TileEntityShadowRefinery shadowRefinery;
+	public TileEntityLightRefinery lightRefinery;
 
-	public GuiShadowRefinery(final InventoryPlayer inventoryPlayer, final TileEntityShadowRefinery tileEntity){
-		super(new ContainerShadowRefinery(inventoryPlayer, tileEntity));
-		shadowRefinery = tileEntity;
+	public GuiLightRefinery(final InventoryPlayer inventoryPlayer, final TileEntityLightRefinery tileEntity){
+		super(new ContainerLightRefinery(inventoryPlayer, tileEntity));
+		lightRefinery = tileEntity;
 	}
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(){
-		fontRenderer.drawString("Shadow Refinery", 8, 6, 0xff210752);
+		fontRenderer.drawString("Light Refinery", 8, 6, 0xff210752);
 		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, (ySize - 96) + 2, 0xff210752);
-		final ILiquidTank tank = shadowRefinery.tank;
+		final ILiquidTank tank = lightRefinery.tank;
 		int liquid;
-		if (tank.getLiquid() == null) {
+		if (tank.getLiquid() == null){
 			liquid = 0;
-		} else {
+		} else{
 			liquid = tank.getLiquid().amount;
 		}
 		fontRenderer.drawString(Integer.toString(liquid / LiquidManager.BUCKET_VOLUME), 8, 16, 0xff808080);
-		displayGauge(10, 10, 3, 52, (liquid * 58) / 10000, ShadowCraftShadow.liquidShadowMovingID);
+		displayGauge(10, 10, 3, 52, (liquid * 58) / 10000, ShadowCraftLight.liquidLightMovingID);
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class GuiShadowRefinery extends GuiContainer{
 		final int x = (width - xSize) / 2;
 		final int y = (height - ySize) / 2;
 		this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
-		this.drawTexturedModalRect(218, guiTop + 33, xSize + 1, 2, shadowRefinery.guiProgress, 16);
+		this.drawTexturedModalRect(218, guiTop + 33, xSize + 1, 2, lightRefinery.guiProgress, 16);
 	}
 
 	private void displayGauge(final int j, final int k, final int line, final int col, int squaled, final int liquidId){

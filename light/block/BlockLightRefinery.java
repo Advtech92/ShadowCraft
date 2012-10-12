@@ -1,4 +1,4 @@
-package shadowcraft.shadow.block;
+package shadowcraft.light.block;
 
 import java.util.Random;
 
@@ -13,13 +13,13 @@ import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.TileEntity;
 import net.minecraft.src.World;
 import shadowcraft.ShadowCraft;
-import shadowcraft.shadow.tileentity.TileEntityShadowRefinery;
+import shadowcraft.light.tileentity.TileEntityLightRefinery;
 
-public class BlockShadowRefinery extends BlockContainer{
+public class BlockLightRefinery extends BlockContainer{
 
-	public BlockShadowRefinery(final int itemID){
+	public BlockLightRefinery(final int itemID){
 		super(itemID, Material.rock);
-		blockIndexInTexture = 8;
+		blockIndexInTexture = (16 * 2) + 8;
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.75F, 1.0F);
 		setLightOpacity(0);
 		setCreativeTab(CreativeTabs.tabDecorations);
@@ -39,9 +39,9 @@ public class BlockShadowRefinery extends BlockContainer{
 	public int getBlockTextureFromSide(final int side){
 		switch (side) {
 		case 0:
-			return 10;
+			return (16 * 2) + 10;
 		case 1:
-			return 9;
+			return (16 * 2) + 9;
 		}
 		return blockIndexInTexture;
 	}
@@ -99,7 +99,7 @@ public class BlockShadowRefinery extends BlockContainer{
 
 	@Override
 	public TileEntity createNewTileEntity(final World world){
-		return new TileEntityShadowRefinery();
+		return new TileEntityLightRefinery();
 	}
 
 }
