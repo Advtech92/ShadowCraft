@@ -66,7 +66,6 @@ public class ShadowCraftShadow{
 
 	public static Item obsidianBucket;
 	public static Item shadowBucket;
-	public static Item shadowBucket2;
 	public static Item shadowIngot;
 	public static Item shadowHelmet;
 	public static Item shadowChestplate;

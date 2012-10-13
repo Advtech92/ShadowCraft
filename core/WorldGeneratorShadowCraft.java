@@ -33,6 +33,13 @@ public class WorldGeneratorShadowCraft implements IWorldGenerator{
 	public void generateSurface(final World world, final Random rand, final int chunkX, final int chunkZ){
 			generateOre(2, world, rand, chunkX, chunkZ, darkOreGen, 20);
 			generateOre(2, world, rand, chunkX, chunkZ, brightOreGen, 20);
+			int ranInt = rand.nextInt(10);
+			if(ranInt == 4){
+				int xPos = chunkX + rand.nextInt(16);
+				int yPos = rand.nextInt(100);
+				int zPos = chunkZ + rand.nextInt(16);
+				(new StructureShadowCraftTemple()).generate(world, rand, xPos, yPos, zPos);
+			}
 	}
 
 	public void generateNether(){}
