@@ -36,6 +36,11 @@ public class BlockShadowRefinery extends BlockContainer{
 	}
 
 	@Override
+	public boolean isOpaqueCube(){
+		return false;
+	}
+	
+	@Override
 	public int getBlockTextureFromSide(final int side){
 		switch (side) {
 		case 0:

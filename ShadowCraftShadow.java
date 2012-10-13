@@ -21,8 +21,8 @@ import shadowcraft.core.item.ItemShadowCraftAxe;
 import shadowcraft.core.item.ItemShadowCraftPickaxe;
 import shadowcraft.core.item.ItemShadowCraftShovel;
 import shadowcraft.core.item.ItemShadowCraftSword;
-import shadowcraft.shadow.ClientProxy;
 import shadowcraft.shadow.ClientTickHandler;
+import shadowcraft.shadow.CommonProxy;
 import shadowcraft.shadow.RenderShadowCube;
 import shadowcraft.shadow.block.BlockDarkOre;
 import shadowcraft.shadow.block.BlockFlowingShadow;
@@ -112,7 +112,7 @@ public class ShadowCraftShadow{
 	public static Logger scLog = Logger.getLogger("ShadowCraft|Shadow");
 
 	@SidedProxy(clientSide = "shadowcraft.shadow.ClientProxy", serverSide = "shadowcraft.shadow.CommonProxy")
-	public static ClientProxy clientProxy;
+	public static CommonProxy proxy;
 
 	@PreInit
 	public void preLoad(final FMLPreInitializationEvent event){
@@ -132,9 +132,9 @@ public class ShadowCraftShadow{
 
 		GameRegistry.registerTileEntity(TileEntityShadowCatcher.class, "tileEntityShadowCatcher");
 		GameRegistry.registerTileEntity(TileEntityShadowRefinery.class, "tileEntityShadowRefinery");
-
+		
 		TileEntityRenderer.instance.specialRendererMap.put(TileEntityShadowRefinery.class, new RenderShadowCube(
-			new ModelRefineryCube()));
+			new ModelRefineryCube(0, 0)));
 
 		LiquidManager.liquids.add(new LiquidData(new LiquidStack(liquidShadowStill, LiquidManager.BUCKET_VOLUME),
 			new LiquidStack(liquidShadowMoving, LiquidManager.BUCKET_VOLUME), new ItemStack(shadowBucket),

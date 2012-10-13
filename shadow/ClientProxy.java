@@ -1,5 +1,7 @@
 package shadowcraft.shadow;
 
-public class ClientProxy extends CommonProxy{
+import net.minecraft.client.Minecraft;
+import net.minecraft.src.EntityFX;
+import net.minecraft.src.World;
 
-}
+public class ClientProxy extends CommonProxy{}

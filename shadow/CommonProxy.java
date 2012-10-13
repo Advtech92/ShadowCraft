@@ -1,5 +1,5 @@
 package shadowcraft.shadow;
 
-public class CommonProxy{
+import net.minecraft.src.World;
 
-}
+public class CommonProxy{}

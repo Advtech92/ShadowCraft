@@ -9,8 +9,8 @@ import cpw.mods.fml.common.asm.SideOnly;
 public class ModelRefineryCube extends ModelBase{
 	public ModelRenderer cube;
 
-	public ModelRefineryCube(){
-		cube = new ModelRenderer(this, 0, 0).setTextureSize(64, 64);
+	public ModelRefineryCube(int x, int y){
+		cube = new ModelRenderer(this, x, y).setTextureSize(64, 64);
 		cube.addBox(-4.0F, -4.0F, -4.0F, 8, 8, 8, 0);
 	}
 

@@ -26,8 +26,8 @@ public class GuiShadowRefinery extends GuiContainer{
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(){
-		fontRenderer.drawString("Shadow Refinery", 8, 6, 0xff210752);
-		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, (ySize - 96) + 2, 0xff210752);
+		fontRenderer.drawString("Shadow Refinery", 8, 6, 4210752);
+		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, (ySize - 96) + 2, 4210752);
 		final ILiquidTank tank = shadowRefinery.tank;
 		int liquid;
 		if (tank.getLiquid() == null) {
@@ -35,7 +35,6 @@ public class GuiShadowRefinery extends GuiContainer{
 		} else {
 			liquid = tank.getLiquid().amount;
 		}
-		fontRenderer.drawString(Integer.toString(liquid / LiquidManager.BUCKET_VOLUME), 8, 16, 0xff808080);
 		displayGauge(10, 10, 3, 52, (liquid * 58) / 10000, ShadowCraftShadow.liquidShadowMovingID);
 	}
 

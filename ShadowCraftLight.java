@@ -10,8 +10,10 @@ import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.ModLoader;
+import net.minecraft.src.TileEntityRenderer;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
+import shadowcraft.core.ModelRefineryCube;
 import shadowcraft.core.block.BlockShadowCraft;
 import shadowcraft.core.item.ItemShadowCraft;
 import shadowcraft.core.item.ItemShadowCraftArmor;
@@ -19,6 +21,7 @@ import shadowcraft.core.item.ItemShadowCraftAxe;
 import shadowcraft.core.item.ItemShadowCraftPickaxe;
 import shadowcraft.core.item.ItemShadowCraftShovel;
 import shadowcraft.core.item.ItemShadowCraftSword;
+import shadowcraft.light.RenderLightCube;
 import shadowcraft.light.block.BlockFlowingLight;
 import shadowcraft.light.block.BlockLightRefinery;
 import shadowcraft.light.block.BlockLightTrapper;
@@ -114,6 +117,9 @@ public class ShadowCraftLight{
 
 		GameRegistry.registerTileEntity(TileEntityLightTrapper.class, "tileEntityLightTrapper");
 		GameRegistry.registerTileEntity(TileEntityLightRefinery.class, "tileEntityLightRefinery");
+		
+		TileEntityRenderer.instance.specialRendererMap.put(TileEntityLightRefinery.class, new RenderLightCube(
+			new ModelRefineryCube(0, 16)));
 		
 		LiquidManager.liquids.add(new LiquidData(new LiquidStack(liquidLightStill, LiquidManager.BUCKET_VOLUME),
 			new LiquidStack(liquidLightMoving, LiquidManager.BUCKET_VOLUME), new ItemStack(lightBucket), new ItemStack(

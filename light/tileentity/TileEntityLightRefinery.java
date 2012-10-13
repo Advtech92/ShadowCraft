@@ -12,6 +12,7 @@ import net.minecraft.src.NBTTagList;
 import net.minecraft.src.Packet;
 import net.minecraft.src.Packet250CustomPayload;
 import shadowcraft.ShadowCraftLight;
+import shadowcraft.ShadowCraftShadow;
 import buildcraft.api.core.Orientations;
 import buildcraft.api.liquids.ILiquidTank;
 import buildcraft.api.liquids.ITankContainer;
