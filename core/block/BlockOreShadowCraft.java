@@ -1,4 +1,4 @@
-package shadowcraft.shadow.block;
+package shadowcraft.core.block;
 
 import java.util.Random;
 
@@ -6,13 +6,16 @@ import net.minecraft.src.BlockOre;
 import net.minecraft.src.CreativeTabs;
 import shadowcraft.ShadowCraftShadow;
 
-public class BlockDarkOre extends BlockOre{
+public class BlockOreShadowCraft extends BlockOre{
 
-	public BlockDarkOre(final int blockID){
+	public int idDropped;
+	
+	public BlockOreShadowCraft(final int blockID, int idDroppedArg, int texIndex){
 		super(blockID, 5);
-		blockIndexInTexture = 16 + 5;
+		blockIndexInTexture = texIndex;
 		setBlockName("darkOre");
 		setCreativeTab(CreativeTabs.tabBlock);
+		idDropped = idDroppedArg;
 	}
 
 	@Override
@@ -22,7 +25,7 @@ public class BlockDarkOre extends BlockOre{
 
 	@Override
 	public int idDropped(final int i, final Random random, final int j){
-		return ShadowCraftShadow.shadowCrystal.shiftedIndex;
+		return idDropped;
 	}
 
 	@Override

@@ -14,6 +14,7 @@ import net.minecraft.src.TileEntityRenderer;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
 import shadowcraft.core.ModelRefineryCube;
+import shadowcraft.core.block.BlockOreShadowCraft;
 import shadowcraft.core.block.BlockShadowCraft;
 import shadowcraft.core.item.ItemShadowCraft;
 import shadowcraft.core.item.ItemShadowCraftArmor;
@@ -111,16 +112,14 @@ public class ShadowCraftLight{
 
 	@Init
 	public void load(final FMLInitializationEvent event){
-		addBlocks();
-
-		addItems();
+		addItemsAndBlocks();
 
 		GameRegistry.registerTileEntity(TileEntityLightTrapper.class, "tileEntityLightTrapper");
 		GameRegistry.registerTileEntity(TileEntityLightRefinery.class, "tileEntityLightRefinery");
-		
+
 		TileEntityRenderer.instance.specialRendererMap.put(TileEntityLightRefinery.class, new RenderLightCube(
 			new ModelRefineryCube(0, 16)));
-		
+
 		LiquidManager.liquids.add(new LiquidData(new LiquidStack(liquidLightStill, LiquidManager.BUCKET_VOLUME),
 			new LiquidStack(liquidLightMoving, LiquidManager.BUCKET_VOLUME), new ItemStack(lightBucket), new ItemStack(
 				glassBucket)));
@@ -155,7 +154,7 @@ public class ShadowCraftLight{
 		config.save();
 	}
 
-	public void addBlocks(){
+	public void addItemsAndBlocks(){
 		lightTrapper = new BlockLightTrapper(lightTrapperID).setHardness(5.0F).setResistance(2000.0F);
 		GameRegistry.registerBlock(lightTrapper);
 		LanguageRegistry.addName(lightTrapper, "Light Trapper");
@@ -180,9 +179,16 @@ public class ShadowCraftLight{
 			.setBlockName("lightRefinery");
 		GameRegistry.registerBlock(lightRefinery);
 		LanguageRegistry.addName(lightRefinery, "Light Refinery");
-	}
 
-	public void addItems(){
+		lightCrystal = new ItemShadowCraft(lightCrystalID).setIconIndex(16 + 4).setItemName("lightCrystal")
+			.setCreativeTab(CreativeTabs.tabMaterials);
+		LanguageRegistry.addName(lightCrystal, "Radiant Crystal");
+
+		brightOre = new BlockOreShadowCraft(brightOreID, lightCrystal.shiftedIndex, (16 * 3) + 5).setHardness(10.0F)
+			.setResistance(500.0F).setBlockName("brightOre");
+		GameRegistry.registerBlock(brightOre);
+		LanguageRegistry.addName(brightOre, "Bright Ore");
+
 		glassBucket = new ItemLightBucket(glassBucketID, 0).setIconIndex(16).setItemName("glassBucket");
 		LanguageRegistry.addName(glassBucket, "Glass Bucket");
 
@@ -225,10 +231,6 @@ public class ShadowCraftLight{
 		lightAxe = new ItemShadowCraftAxe(lightAxeID, lightToolMaterial).setIconIndex((16 * 7) + 14).setItemName(
 			"lightAxe");
 		LanguageRegistry.addName(lightAxe, "Carbon Crusher");
-
-		lightCrystal = new ItemShadowCraft(lightCrystalID).setIconIndex(16 + 4).setItemName("lightCrystal")
-			.setCreativeTab(CreativeTabs.tabMaterials);
-		LanguageRegistry.addName(lightCrystal, "Radiant Crystal");
 	}
 
 	public void addRecipes(){

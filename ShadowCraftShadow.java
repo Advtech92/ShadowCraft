@@ -14,6 +14,7 @@ import net.minecraft.src.TileEntityRenderer;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
 import shadowcraft.core.ModelRefineryCube;
+import shadowcraft.core.block.BlockOreShadowCraft;
 import shadowcraft.core.block.BlockShadowCraft;
 import shadowcraft.core.item.ItemShadowCraft;
 import shadowcraft.core.item.ItemShadowCraftArmor;
@@ -24,7 +25,6 @@ import shadowcraft.core.item.ItemShadowCraftSword;
 import shadowcraft.shadow.ClientTickHandler;
 import shadowcraft.shadow.CommonProxy;
 import shadowcraft.shadow.RenderShadowCube;
-import shadowcraft.shadow.block.BlockDarkOre;
 import shadowcraft.shadow.block.BlockFlowingShadow;
 import shadowcraft.shadow.block.BlockShadowCatcher;
 import shadowcraft.shadow.block.BlockShadowRefinery;
@@ -124,15 +124,13 @@ public class ShadowCraftShadow{
 
 	@Init
 	public void load(final FMLInitializationEvent event){
-		addBlocks();
-
-		addItems();
+		addItemsAndBlocks();
 
 		addRecipes();
 
 		GameRegistry.registerTileEntity(TileEntityShadowCatcher.class, "tileEntityShadowCatcher");
 		GameRegistry.registerTileEntity(TileEntityShadowRefinery.class, "tileEntityShadowRefinery");
-		
+
 		TileEntityRenderer.instance.specialRendererMap.put(TileEntityShadowRefinery.class, new RenderShadowCube(
 			new ModelRefineryCube(0, 0)));
 
@@ -176,7 +174,7 @@ public class ShadowCraftShadow{
 		config.save();
 	}
 
-	public void addBlocks(){
+	public void addItemsAndBlocks(){
 		shadowCatcher = new BlockShadowCatcher(shadowCatcherID).setHardness(5.0F).setResistance(2000.0F);
 		GameRegistry.registerBlock(shadowCatcher);
 		LanguageRegistry.addName(shadowCatcher, "Shadow Catcher");
@@ -196,7 +194,12 @@ public class ShadowCraftShadow{
 		GameRegistry.registerBlock(shadowRefinery);
 		LanguageRegistry.addName(shadowRefinery, "Shadow Refinery");
 
-		darkOre = new BlockDarkOre(darkOreID).setHardness(10.0F).setResistance(500.0F);
+		shadowCrystal = new ItemShadowCraft(shadowCrystalID).setIconIndex(4).setItemName("shadowCrystal")
+			.setCreativeTab(CreativeTabs.tabMaterials);
+		LanguageRegistry.addName(shadowCrystal, "Caliginous Crystal");
+
+		darkOre = new BlockOreShadowCraft(darkOreID, shadowCrystal.shiftedIndex, 16 + 5).setHardness(10.0F)
+			.setResistance(500.0F).setBlockName("darkOre");
 		GameRegistry.registerBlock(darkOre);
 		LanguageRegistry.addName(darkOre, "Dark Ore");
 
@@ -205,9 +208,7 @@ public class ShadowCraftShadow{
 		shadowBlock.blockIndexInTexture = 5;
 		GameRegistry.registerBlock(shadowBlock);
 		LanguageRegistry.addName(shadowBlock, "Cryptic Block");
-	}
 
-	public void addItems(){
 		obsidianBucket = new ItemShadowBucket(obsidianBucketID, 0).setIconIndex(0).setItemName("obsidianBucket");
 		LanguageRegistry.addName(obsidianBucket, "Obsidian Bucket");
 
@@ -250,10 +251,6 @@ public class ShadowCraftShadow{
 		shadowAxe = new ItemShadowCraftAxe(shadowAxeID, shadowToolMaterial).setIconIndex((16 * 7) + 15).setItemName(
 			"shadowAxe");
 		LanguageRegistry.addName(shadowAxe, "Nature's Nightmare");
-
-		shadowCrystal = new ItemShadowCraft(shadowCrystalID).setIconIndex(4).setItemName("shadowCrystal")
-			.setCreativeTab(CreativeTabs.tabMaterials);
-		LanguageRegistry.addName(shadowCrystal, "Caliginous Crystal");
 	}
 
 	public void addRecipes(){
